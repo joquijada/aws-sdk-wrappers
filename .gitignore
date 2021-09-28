@@ -1,0 +1,19 @@
+backup
+demo
+
+# package directories
+node_modules
+jspm_packages
+
+# Serverless directories
+.serverless
+_optimize
+/services/nikolambda/poc/
+
+# VSCode
+.vscode
+
+.idea
+coverage
+.DS_Store
+*.swp

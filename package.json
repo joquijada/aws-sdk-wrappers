@@ -1,0 +1,45 @@
+{
+  "name": "@exsoinn/aws-sdk-wrappers",
+  "version": "1.0.0",
+  "description": "Wrappers around AWS SDK services",
+  "main": "index.js",
+  "scripts": {
+    "jest-test": "./.script/jest-test.sh",
+    "types": "rm -rf ./index.d.ts ./lib/*.d.ts && npx tsc",
+    "release": "npx semantic-release@17.4.2 --no-ci",
+    "release:dry-run": "npx semantic-release@17.4.2 --no-ci --dry-run",
+    "test": "npm run types && jest --config=\"./jest.config.js\" --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:joquijada/aws-sdk-wrappers.git"
+  },
+  "author": "Jose Quijada",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.996.0",
+    "axios": "^0.24.0",
+    "base-64": "^1.0.0",
+    "ioredis": "^4.27.9",
+    "lodash.assign": "^4.2.0",
+    "lodash.clonedeep": "^4.5.0",
+    "ow": "^0.28.0",
+    "query-string": "^7.0.1",
+    "simple-multipart": "0.0.1"
+  },
+  "devDependencies": {
+    "@semantic-release/changelog": "^6.0.1",
+    "@semantic-release/commit-analyzer": "^9.0.1",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/github": "^8.0.2",
+    "@semantic-release/npm": "^8.0.3",
+    "@semantic-release/release-notes-generator": "^10.0.2",
+    "eslint": "^7.32.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.1.0",
+    "jest": "^27.2.3",
+    "typescript": "^4.4.3"
+  }
+}
