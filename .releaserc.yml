@@ -12,3 +12,4 @@ plugins:
         label: 'NPM package.json'
       - path: 'package-lock.json'
         label: 'NPM package-lock.json'
+  - '@semantic-release/git'
