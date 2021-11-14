@@ -1,3 +1,11 @@
+## [1.1.5](https://github.com/joquijada/aws-sdk-wrappers/compare/v1.1.4...v1.1.5) (2021-11-14)
+
+
+### Bug Fixes
+
+* **publish:** see if this fixes commit missing assets issue ([7fc2314](https://github.com/joquijada/aws-sdk-wrappers/commit/7fc2314823e1c98b3007eba8853b731555538d75))
+* **publish:** see if this fixes commit missing assets issue ([6a4e4b1](https://github.com/joquijada/aws-sdk-wrappers/commit/6a4e4b1b0e4480e87f0c1a173f3eabe4cd8e46b6))
+
 ## [1.1.4](https://github.com/joquijada/aws-sdk-wrappers/compare/v1.1.3...v1.1.4) (2021-11-14)
 
 
