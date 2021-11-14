@@ -1,7 +1,6 @@
 {
   "name": "@exsoinn/aws-sdk-wrappers",
-  "private": false,
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Wrappers around AWS SDK services",
   "main": "index.js",
   "scripts": {
