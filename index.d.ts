@@ -1,6 +1,6 @@
 /// <reference types="node" />
-import { SQS } from "aws-sdk/clients/all";
 import { AWSError } from "aws-sdk/lib/core";
+import { SQS } from "aws-sdk/clients/all";
 export const axiosClient: {
     get: (url: any, callback: any, options?: {}) => any;
     getAsStream: (url: any, callback: any, options?: {}) => any;
@@ -9,6 +9,13 @@ export const axiosClient: {
         headers: any;
         statusCode: any;
     }>;
+};
+export const dynamoDbClient: {
+    get: (params: any) => Promise<import("aws-sdk/lib/request").PromiseResult<AWS.DynamoDB.DocumentClient.GetItemOutput, AWSError>>;
+    put: (params: any) => Promise<import("aws-sdk/lib/request").PromiseResult<AWS.DynamoDB.DocumentClient.PutItemOutput, AWSError>>;
+    query: (params: any) => Promise<import("aws-sdk/lib/request").PromiseResult<AWS.DynamoDB.DocumentClient.QueryOutput, AWSError>>;
+    update: (params: any) => Promise<import("aws-sdk/lib/request").PromiseResult<AWS.DynamoDB.DocumentClient.UpdateItemOutput, AWSError>>;
+    delete: (params: any) => Promise<import("aws-sdk/lib/request").PromiseResult<AWS.DynamoDB.DocumentClient.DeleteItemOutput, AWSError>>;
 };
 export const s3Client: {
     copy: (fromBucket: any, fromPath: any, toBucket: any, toPath: any, extraParams?: {}) => Promise<any>;
