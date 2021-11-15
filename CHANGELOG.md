@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/joquijada/aws-sdk-wrappers/compare/v1.2.0...v1.2.1) (2021-11-15)
+
+
+### Bug Fixes
+
+* **dynamo:** add ts types ([1a43385](https://github.com/joquijada/aws-sdk-wrappers/commit/1a4338502356d6e4224e6ea602064ab9582a1d22))
+
 # [1.2.0](https://github.com/joquijada/aws-sdk-wrappers/compare/v1.1.5...v1.2.0) (2021-11-15)
 
 
