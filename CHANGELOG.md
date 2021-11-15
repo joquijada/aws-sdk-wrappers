@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/joquijada/aws-sdk-wrappers/compare/v1.1.5...v1.2.0) (2021-11-15)
+
+
+### Features
+
+* **dynamo:** expose the client ([c77f07e](https://github.com/joquijada/aws-sdk-wrappers/commit/c77f07e9728c64ae095f9ff16673d7a450a4a3c3))
+
 ## [1.1.5](https://github.com/joquijada/aws-sdk-wrappers/compare/v1.1.4...v1.1.5) (2021-11-14)
 
 
