@@ -8,10 +8,8 @@ declare class HttpResponse {
      * @param {number} statusCode
      * @param {any} message
      */
-    constructor(statusCode: number, message: any, additionalInfo?: {}, headers?: {}, cookies?: any[]);
+    constructor(statusCode: number, message: any, additionalInfo?: {});
     statusCode: number;
-    headers: {};
-    cookies: any[];
     message: any;
     /**
      * Serializes to the format <a href="https://aws.amazon.com/premiumsupport/knowledge-center/malformed-502-api-gateway/">that AWS API Gateway proxies like:</a>
@@ -26,10 +24,6 @@ declare class HttpResponse {
      * </pre>
      */
     toAwsApiGatewayFormat(): {
-        statusCode: number;
-        isBase64Encoded: boolean;
-        headers: {};
-        cookies: any[];
         body: string;
     };
 }

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "jest-test": "./.script/jest-test.sh",
-    "types": "rm -rf ./index.d.ts ./lib/*.d.ts && npx tsc",
+    "types": "rm -rf ./lib/*.d.ts && npx tsc",
     "release": "npx semantic-release@17.4.2 --no-ci",
     "release:dry-run": "npx semantic-release@17.4.2 --no-ci --dry-run",
     "test": "npm run types && jest --config=\"./jest.config.js\" --coverage"

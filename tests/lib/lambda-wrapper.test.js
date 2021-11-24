@@ -27,7 +27,7 @@ describe('LambdaWrapper', () => {
       expect(result.statusCode).toBe(500)
       const body = JSON.parse(result.body)
       expect(body.message).toBe(MOCK_ERROR)
-      expect(body.statusCode).toBe(500)
+      expect(result.statusCode).toBe(500)
     })
   })
 
@@ -41,7 +41,7 @@ describe('LambdaWrapper', () => {
       expect(result.statusCode).toBe(200)
       const body = JSON.parse(result.body)
       expect(body.message).toBe('Operation successful')
-      expect(body.statusCode).toBe(200)
+      expect(result.statusCode).toBe(200)
     })
   })
 })
