@@ -1,3 +1,10 @@
+## [1.2.3](https://github.com/joquijada/aws-sdk-wrappers/compare/v1.2.2...v1.2.3) (2021-11-24)
+
+
+### Bug Fixes
+
+* **lambda:** updates http response to match Lambda/APIG proxy integration output ([025ece2](https://github.com/joquijada/aws-sdk-wrappers/commit/025ece2fe8c7e1fd1824bd223852df98efbd04af))
+
 ## [1.2.2](https://github.com/joquijada/aws-sdk-wrappers/compare/v1.2.1...v1.2.2) (2021-11-24)
 
 
