@@ -1,3 +1,10 @@
+## [1.2.2](https://github.com/joquijada/aws-sdk-wrappers/compare/v1.2.1...v1.2.2) (2021-11-24)
+
+
+### Bug Fixes
+
+* **lambda:** update output to reflect apig api ([9afd6a7](https://github.com/joquijada/aws-sdk-wrappers/commit/9afd6a738b9a16b0ec3ce1193c532b91a039a54c))
+
 ## [1.2.1](https://github.com/joquijada/aws-sdk-wrappers/compare/v1.2.0...v1.2.1) (2021-11-15)
 
 
