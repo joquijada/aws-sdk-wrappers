@@ -1,6 +1,7 @@
 export = HttpResponse;
 /**
- * Encapsulate HTTP response.
+ * Encapsulate HTTP response. Can be converted to an APIG Lambda response object by invoking
+ * HttpResponse.toAwsApiGatewayFormat.
  *
  */
 declare class HttpResponse {
@@ -22,6 +23,8 @@ declare class HttpResponse {
       "body": "..."
      }
      * </pre>
+     * If the logic looks weird is because we wanted to maintain backwards compatibility with clients
+     * that already relied on the usual constructor(), and didn't opt to overload constructor.
      */
     toAwsApiGatewayFormat(): {
         body: string;

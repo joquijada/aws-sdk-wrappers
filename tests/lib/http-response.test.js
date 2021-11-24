@@ -25,4 +25,19 @@ describe('http-response', () => {
       body: JSON.stringify({ name: 'value' }, null, ' ')
     })
   })
+
+  it('does not auto generate the "body" if explicitly defined by caller', () => {
+    const res = new HttpResponse(200, '', {
+      name: 'value',
+      headers: { hdr1: 'hdr val' },
+      body: 'the body',
+      cookies: ['cookie 1']
+    })
+    expect(res.toAwsApiGatewayFormat()).toEqual({
+      statusCode: 200,
+      headers: { hdr1: 'hdr val' },
+      cookies: ['cookie 1'],
+      body: 'the body'
+    })
+  })
 })
