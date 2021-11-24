@@ -41,4 +41,4 @@ export const utils: {
 export const HttpResponse: typeof import("./lib/http-response");
 export const lambdaClient: typeof import("./lib/lambda-client");
 export const lambdaWrapper: (lambda: any) => (event: any, context: any) => Promise<any>;
-export const redisClient: {};
+export const redisClient: Record<string, Function>;
