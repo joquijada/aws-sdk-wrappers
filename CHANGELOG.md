@@ -1,3 +1,10 @@
+## [1.2.4](https://github.com/joquijada/aws-sdk-wrappers/compare/v1.2.3...v1.2.4) (2021-11-24)
+
+
+### Bug Fixes
+
+* **http-response:** allow user to define 'body' explicitly ([4647ec7](https://github.com/joquijada/aws-sdk-wrappers/commit/4647ec7b0a8a7dad0e0eb161357348559c2ff6b9))
+
 ## [1.2.3](https://github.com/joquijada/aws-sdk-wrappers/compare/v1.2.2...v1.2.3) (2021-11-24)
 
 
