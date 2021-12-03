@@ -14,6 +14,9 @@ const mockUpdate = jest.fn(() => ({
 const mockDelete = jest.fn(() => ({
   promise: () => mockPromise
 }))
+const mockScan = jest.fn(() => ({
+  promise: () => mockPromise
+}))
 
 /*
  * Must provide mock factories for `aws-sdk` so that our mock is already set up as opposed to the default Jest mock
@@ -22,11 +25,12 @@ const mockDelete = jest.fn(() => ({
 jest.mock('aws-sdk', () => ({
   DynamoDB: {
     DocumentClient: jest.fn(() => ({
+      delete: mockDelete,
       get: mockGet,
       put: mockPut,
       query: mockQuery,
-      update: mockUpdate,
-      delete: mockDelete
+      scan: mockScan,
+      update: mockUpdate
     }))
   }
 }))
@@ -84,6 +88,17 @@ describe('DynamoDbClient', () => {
       const res = dynamoDbClient.delete(testParams)
       expect(res).toEqual(mockPromise)
       expect(mockDelete.mock.calls[0][0]).toEqual(testParams)
+    } catch (e) {
+      console.error(`Problem running the test: ${e}`)
+      expect(e).toBeUndefined()
+    }
+  })
+
+  it('scans a table', () => {
+    try {
+      const res = dynamoDbClient.scan(testParams)
+      expect(res).toEqual(mockPromise)
+      expect(mockScan.mock.calls[0][0]).toEqual(testParams)
     } catch (e) {
       console.error(`Problem running the test: ${e}`)
       expect(e).toBeUndefined()

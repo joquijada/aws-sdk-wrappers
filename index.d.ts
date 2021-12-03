@@ -11,11 +11,12 @@ export const axiosClient: {
     }>;
 };
 export const dynamoDbClient: {
+    delete: (params: any) => Promise<import("aws-sdk/lib/request").PromiseResult<AWS.DynamoDB.DocumentClient.DeleteItemOutput, AWSError>>;
     get: (params: any) => Promise<import("aws-sdk/lib/request").PromiseResult<AWS.DynamoDB.DocumentClient.GetItemOutput, AWSError>>;
     put: (params: any) => Promise<import("aws-sdk/lib/request").PromiseResult<AWS.DynamoDB.DocumentClient.PutItemOutput, AWSError>>;
     query: (params: any) => Promise<import("aws-sdk/lib/request").PromiseResult<AWS.DynamoDB.DocumentClient.QueryOutput, AWSError>>;
+    scan: (params: any) => Promise<import("aws-sdk/lib/request").PromiseResult<AWS.DynamoDB.DocumentClient.ScanOutput, AWSError>>;
     update: (params: any) => Promise<import("aws-sdk/lib/request").PromiseResult<AWS.DynamoDB.DocumentClient.UpdateItemOutput, AWSError>>;
-    delete: (params: any) => Promise<import("aws-sdk/lib/request").PromiseResult<AWS.DynamoDB.DocumentClient.DeleteItemOutput, AWSError>>;
 };
 export const s3Client: {
     copy: (fromBucket: any, fromPath: any, toBucket: any, toPath: any, extraParams?: {}) => Promise<any>;
