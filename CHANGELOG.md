@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/joquijada/aws-sdk-wrappers/compare/v1.2.4...v1.3.0) (2021-12-03)
+
+
+### Features
+
+* **dynamdb:** expose scan command ([a9e95ff](https://github.com/joquijada/aws-sdk-wrappers/commit/a9e95ff5b85a87a7f462323333361d2ba4cf6c8b))
+
 ## [1.2.4](https://github.com/joquijada/aws-sdk-wrappers/compare/v1.2.3...v1.2.4) (2021-11-24)
 
 
