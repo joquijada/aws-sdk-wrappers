@@ -1,6 +1,6 @@
 export = HttpResponse;
 /**
- * Encapsulate HTTP response. Can be converted to an APIG Lambda response object by invoking
+ * Encapsulate HTTP response. Can be converted to an APIG Lambda proxy integration response object by invoking
  * HttpResponse.toAwsApiGatewayFormat.
  *
  */
@@ -24,7 +24,8 @@ declare class HttpResponse {
      }
      * </pre>
      * If the logic looks weird is because we wanted to maintain backwards compatibility with clients
-     * that already relied on the usual constructor(), and didn't opt to overload constructor.
+     * that already relied on the usual constructor(), else the constructor would accept arguments similar to the
+     * props found in APIG/Lambda event response object.
      */
     toAwsApiGatewayFormat(): {
         body: string;

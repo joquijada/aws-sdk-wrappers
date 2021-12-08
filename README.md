@@ -28,5 +28,5 @@ npm install @exsoinn/common-util
 2. Write the code to support your feature/fix/enhancement, etc.
 3. Add any unit tests, if applicable
 4. Run `npm test` to verify all tests pass and coverage requirements are met.
-5. If all test pass, commit to source control, ensuring the commit message conforms to to the Angular convention (see number 2 of [this](https://git.showtimeanytime.com/projects/MDICK/repos/node-js-ci-cd/browse#pre-requisites) guide section).
-6. Create PR from your fork to  the main repo.
+5. If all test pass, commit to source control, ensuring the commit message conforms to the Angular convention (see number 2 of [this](https://git.showtimeanytime.com/projects/MDICK/repos/node-js-ci-cd/browse#pre-requisites) guide section).
+6. Create PR from your fork to the main repo.

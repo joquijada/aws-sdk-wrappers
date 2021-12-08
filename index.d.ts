@@ -11,6 +11,7 @@ export const axiosClient: {
     }>;
 };
 export const dynamoDbClient: {
+    copyTable: (params: any) => Promise<any>;
     delete: (params: any) => Promise<import("aws-sdk/lib/request").PromiseResult<AWS.DynamoDB.DocumentClient.DeleteItemOutput, AWSError>>;
     get: (params: any) => Promise<import("aws-sdk/lib/request").PromiseResult<AWS.DynamoDB.DocumentClient.GetItemOutput, AWSError>>;
     put: (params: any) => Promise<import("aws-sdk/lib/request").PromiseResult<AWS.DynamoDB.DocumentClient.PutItemOutput, AWSError>>;

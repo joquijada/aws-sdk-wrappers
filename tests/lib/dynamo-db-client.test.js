@@ -1,3 +1,5 @@
+jest.mock('copy-dynamodb-table')
+
 const mockPromise = jest.fn().mockResolvedValue()
 const mockGet = jest.fn(() => ({
   promise: () => mockPromise
@@ -35,73 +37,77 @@ jest.mock('aws-sdk', () => ({
   }
 }))
 const dynamoDbClient = require('../../lib/dynamo-db-client')
+const { copy } = require('copy-dynamodb-table')
 const testParams = {
   param1: 'value1'
 }
 describe('DynamoDbClient', () => {
-  it('invokes DynamoDB "get" correctly', () => {
+  it('invokes DynamoDB "get" correctly', async () => {
+    const res = await dynamoDbClient.get(testParams)
+    expect(res).toEqual(mockPromise)
+    expect(mockGet.mock.calls[0][0]).toEqual(testParams)
+  })
+
+  it('invokes DynamoDB "put" correctly', async () => {
+    const res = await dynamoDbClient.put(testParams)
+    expect(res).toEqual(mockPromise)
+    expect(mockPut.mock.calls[0][0]).toEqual(testParams)
+  })
+
+  it('invokes DynamoDB "query" correctly', async () => {
+    const res = await dynamoDbClient.query(testParams)
+    expect(res).toEqual(mockPromise)
+    expect(mockQuery.mock.calls[0][0]).toEqual(testParams)
+  })
+
+  it('invokes DynamoDB "update" correctly', async () => {
+    const res = await dynamoDbClient.update(testParams)
+    expect(res).toEqual(mockPromise)
+    expect(mockUpdate.mock.calls[0][0]).toEqual(testParams)
+  })
+
+  it('invokes DynamoDB "delete" correctly', async () => {
+    const res = await dynamoDbClient.delete(testParams)
+    expect(res).toEqual(mockPromise)
+    expect(mockDelete.mock.calls[0][0]).toEqual(testParams)
+  })
+
+  it('scans a table', async () => {
+    const res = await dynamoDbClient.scan(testParams)
+    expect(res).toEqual(mockPromise)
+    expect(mockScan.mock.calls[0][0]).toEqual(testParams)
+  })
+
+  it('returns a resolved promise when copy table succeeds', async () => {
+    const dummySuccessResult = {
+      success: true
+    }
+    copy.mockImplementationOnce((params, cb) => {
+      cb(null, dummySuccessResult)
+    })
     try {
-      const res = dynamoDbClient.get(testParams)
-      expect(res).toEqual(mockPromise)
-      expect(mockGet.mock.calls[0][0]).toEqual(testParams)
+      const res = await dynamoDbClient.copyTable(testParams)
+      expect(res).toEqual(dummySuccessResult)
+      expect(copy.mock.calls[0][0]).toEqual(testParams)
     } catch (e) {
       console.error(`Problem running the test: ${e}`)
       expect(e).toBeUndefined()
     }
   })
 
-  it('invokes DynamoDB "put" correctly', () => {
-    try {
-      const res = dynamoDbClient.put(testParams)
-      expect(res).toEqual(mockPromise)
-      expect(mockPut.mock.calls[0][0]).toEqual(testParams)
-    } catch (e) {
-      console.error(`Problem running the test: ${e}`)
-      expect(e).toBeUndefined()
+  it('returns a rejected promise when copy table fails', async () => {
+    const dummyError = {
+      success: false
     }
-  })
-
-  it('invokes DynamoDB "query" correctly', () => {
+    copy.mockImplementationOnce((params, cb) => {
+      cb(dummyError, null)
+    })
     try {
-      const res = dynamoDbClient.query(testParams)
-      expect(res).toEqual(mockPromise)
-      expect(mockQuery.mock.calls[0][0]).toEqual(testParams)
+      await dynamoDbClient.copyTable(testParams)
+      expect(copy.mock.calls[0][0]).toEqual(testParams)
+      throw new Error('Should have thrown an error')
     } catch (e) {
-      console.error(`Problem running the test: ${e}`)
-      expect(e).toBeUndefined()
-    }
-  })
-
-  it('invokes DynamoDB "update" correctly', () => {
-    try {
-      const res = dynamoDbClient.update(testParams)
-      expect(res).toEqual(mockPromise)
-      expect(mockUpdate.mock.calls[0][0]).toEqual(testParams)
-    } catch (e) {
-      console.error(`Problem running the test: ${e}`)
-      expect(e).toBeUndefined()
-    }
-  })
-
-  it('invokes DynamoDB "delete" correctly', () => {
-    try {
-      const res = dynamoDbClient.delete(testParams)
-      expect(res).toEqual(mockPromise)
-      expect(mockDelete.mock.calls[0][0]).toEqual(testParams)
-    } catch (e) {
-      console.error(`Problem running the test: ${e}`)
-      expect(e).toBeUndefined()
-    }
-  })
-
-  it('scans a table', () => {
-    try {
-      const res = dynamoDbClient.scan(testParams)
-      expect(res).toEqual(mockPromise)
-      expect(mockScan.mock.calls[0][0]).toEqual(testParams)
-    } catch (e) {
-      console.error(`Problem running the test: ${e}`)
-      expect(e).toBeUndefined()
+      expect(e).toEqual(dummyError)
     }
   })
 })

@@ -1,4 +1,5 @@
 import { DynamoDB } from "aws-sdk/clients/all";
+export declare function copyTable(params: any): Promise<any>;
 export declare function _delete(params: any): Promise<import("aws-sdk/lib/request").PromiseResult<DynamoDB.DocumentClient.DeleteItemOutput, AWS.AWSError>>;
 export { _delete as delete };
 export declare function get(params: any): Promise<import("aws-sdk/lib/request").PromiseResult<DynamoDB.DocumentClient.GetItemOutput, AWS.AWSError>>;
