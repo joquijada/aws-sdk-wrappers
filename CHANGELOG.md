@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/joquijada/aws-sdk-wrappers/compare/v1.3.0...v1.4.0) (2021-12-08)
+
+
+### Features
+
+* **dynamdb:** copyTable method ([3ab91ed](https://github.com/joquijada/aws-sdk-wrappers/commit/3ab91ed9ae8cea7c59bd4371ac1cc92f5d4cfbf6))
+
 # [1.3.0](https://github.com/joquijada/aws-sdk-wrappers/compare/v1.2.4...v1.3.0) (2021-12-03)
 
 
