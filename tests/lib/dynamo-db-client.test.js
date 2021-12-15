@@ -1,6 +1,6 @@
 jest.mock('copy-dynamodb-table')
 
-const mockPromise = jest.fn().mockResolvedValue()
+const mockPromise = jest.fn().mockResolvedValue('success')
 const mockGet = jest.fn(() => ({
   promise: () => mockPromise
 }))
