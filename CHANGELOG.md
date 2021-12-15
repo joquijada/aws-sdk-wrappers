@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/joquijada/aws-sdk-wrappers/compare/v1.4.0...v1.5.0) (2021-12-15)
+
+
+### Features
+
+* **s3:** add new zip s3 objects method to api ([42632a7](https://github.com/joquijada/aws-sdk-wrappers/commit/42632a787545a28ee424955e53c71a1b89098ff0))
+
 # [1.4.0](https://github.com/joquijada/aws-sdk-wrappers/compare/v1.3.0...v1.4.0) (2021-12-08)
 
 
