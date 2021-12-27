@@ -1,3 +1,10 @@
+## [1.5.1](https://github.com/joquijada/aws-sdk-wrappers/compare/v1.5.0...v1.5.1) (2021-12-27)
+
+
+### Bug Fixes
+
+* **s3-zip:** catch errors during zip process and log them ([ac1bf71](https://github.com/joquijada/aws-sdk-wrappers/commit/ac1bf719f69d6ece653f7d4da238a92e38dc5cf5))
+
 # [1.5.0](https://github.com/joquijada/aws-sdk-wrappers/compare/v1.4.0...v1.5.0) (2021-12-15)
 
 
