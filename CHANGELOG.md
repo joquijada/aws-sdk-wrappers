@@ -1,3 +1,10 @@
+## [1.5.2](https://github.com/joquijada/aws-sdk-wrappers/compare/v1.5.1...v1.5.2) (2021-12-27)
+
+
+### Bug Fixes
+
+* **stream:** make things compatible with older versions of node ([0daf9a6](https://github.com/joquijada/aws-sdk-wrappers/commit/0daf9a6801a59309bbeaa750c5b69ab623c5cc95))
+
 ## [1.5.1](https://github.com/joquijada/aws-sdk-wrappers/compare/v1.5.0...v1.5.1) (2021-12-27)
 
 
