@@ -33,7 +33,7 @@ export const s3Client: {
     tag: (bucketName: any, filePath: any, tagName: any) => Promise<any>;
     tags: (bucketName: any, filePath: any) => Promise<any>;
     zipObjects: (bucketName: any, folder: any, objects: any) => any;
-    zipObjectsToBucket: (fromBucketName: any, fromFolder: any, objects: any, toBucketName: any, toPath: any) => any;
+    zipObjectsToBucket: (fromBucketName: any, fromFolder: any, objects: any, toBucketName: any, toPath: any) => Promise<any>;
 };
 export const sqsClient: {
     send: (url: any, message: any, params?: {}) => Promise<import("aws-sdk/lib/request").PromiseResult<SQS.SendMessageResult, AWSError>>;

@@ -167,17 +167,56 @@ describe('S3Client', () => {
     expect(mockUpload.mock.calls[1][2]).toEqual(mockCallback)
   })
 
-  it('Zips S3 objects and stores the Zip on S3', () => {
+  it('Zips S3 objects and stores the Zip on S3', async () => {
     process.env.SHO_AWS_STAGE = 'local'
-    const mockPipe = jest.fn()
-    s3Zip.archive.mockImplementationOnce(() => ({
-      pipe: mockPipe
-    }))
+    const zipPipelinePromiseSuccess = 'THIS IS A TEST: Zip pipeline was successful'
+    global.promisifiedPipelineMock.mockResolvedValueOnce(zipPipelinePromiseSuccess)
+    const s3ZipArchiveReturnValue = {
+      foo: 'bar'
+    }
+    s3Zip.archive.mockReturnValueOnce(s3ZipArchiveReturnValue)
     const args = ['from-bucket', 'from-folder', ['obj1', 'obj2', 'obj3']]
-    const res = s3Client.zipObjectsToBucket(...args)
-    expect(res).toEqual(mockUploadPromise)
+    await s3Client.zipObjectsToBucket(...args)
     expect(s3Zip.archive).toHaveBeenLastCalledWith({ s3: mockS3(), bucket: args[0] }, args[1], args[2])
-    expect(JSON.stringify(mockPipe.mock.calls[0][0])).toEqual(JSON.stringify(passThrough))
+    expect(global.promisifiedPipelineMock.mock.calls[0][0]).toEqual(s3ZipArchiveReturnValue)
+    expect(JSON.stringify(global.promisifiedPipelineMock.mock.calls[0][1])).toEqual(JSON.stringify(passThrough))
+  })
+
+  it('throws error if Zip pipeline fails', async () => {
+    const zipPipelinePromiseError = 'THIS IS A TEST: Zip pipeline FAILED'
+    try {
+      process.env.SHO_AWS_STAGE = 'local'
+      global.promisifiedPipelineMock.mockRejectedValueOnce(zipPipelinePromiseError)
+      const s3ZipArchiveReturnValue = {
+        foo: 'bar'
+      }
+      s3Zip.archive.mockReturnValueOnce(s3ZipArchiveReturnValue)
+      const args = ['from-bucket', 'from-folder', ['obj1', 'obj2', 'obj3']]
+      await s3Client.zipObjectsToBucket(...args)
+      throw new Error('Should have thrown an error')
+    } catch (e) {
+      expect(e).toBe(zipPipelinePromiseError)
+    }
+  })
+
+  it('throws error if Zip upload to S3 fails', async () => {
+    const zipUploadToS3PromiseError = 'THIS IS A TEST: Zip upload to S3 FAILED'
+    global.promisifiedPipelineMock.mockResolvedValueOnce('THIS IS A TEST: Zip pipeline was successful')
+    try {
+      process.env.SHO_AWS_STAGE = 'local'
+      mockUpload.mockImplementationOnce(() => ({
+        promise: () => Promise.reject(zipUploadToS3PromiseError)
+      }))
+      const s3ZipArchiveReturnValue = {
+        foo: 'bar'
+      }
+      s3Zip.archive.mockReturnValueOnce(s3ZipArchiveReturnValue)
+      const args = ['from-bucket', 'from-folder', ['obj1', 'obj2', 'obj3']]
+      await s3Client.zipObjectsToBucket(...args)
+      throw new Error('Should have thrown an error')
+    } catch (e) {
+      expect(e).toBe(zipUploadToS3PromiseError)
+    }
   })
 
   it('retrieves file tags', async () => {
