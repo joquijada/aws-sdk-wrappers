@@ -1,3 +1,10 @@
+## [1.5.3](https://github.com/joquijada/aws-sdk-wrappers/compare/v1.5.2...v1.5.3) (2021-12-29)
+
+
+### Bug Fixes
+
+* **s3-zip:** wait on zip upload to complete ([f1a90e8](https://github.com/joquijada/aws-sdk-wrappers/commit/f1a90e838b10572d396085f5c18a5da4c7db6fc6))
+
 ## [1.5.2](https://github.com/joquijada/aws-sdk-wrappers/compare/v1.5.1...v1.5.2) (2021-12-27)
 
 
