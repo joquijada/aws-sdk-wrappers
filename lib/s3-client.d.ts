@@ -60,6 +60,7 @@ declare const _exports: {
     tags: (bucketName: any, filePath: any) => Promise<import("aws-sdk/lib/request").PromiseResult<S3.GetObjectTaggingOutput, AWS.AWSError>>;
     zipObjects: (bucketName: any, folder: any, objects: any) => any;
     zipObjectsToBucket: (fromBucketName: any, fromFolder: any, objects: any, toBucketName: any, toPath: any) => Promise<any>;
+    updateClient: (opts: any) => void;
     config: import("aws-sdk/lib/config-base").ConfigBase & import("aws-sdk/lib/service").ServiceConfigurationOptions & import("aws-sdk/lib/config_use_dualstack").UseDualstackConfigOptions & S3.ClientApiVersions;
     apiVersions: string[];
     endpoint: Endpoint;

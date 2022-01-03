@@ -23,6 +23,10 @@ const EXPECTED_ARGUMENTS = {
 }
 
 describe('LambdaClient', () => {
+  it('updates client', () => {
+    lambdaClient.updateClient({})
+  })
+
   it('sets local properties', () => {
     const prevStage = process.env.SHO_AWS_STAGE
     process.env.SHO_AWS_STAGE = 'local'

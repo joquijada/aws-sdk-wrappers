@@ -71,6 +71,7 @@ export const s3Client: {
     tags: (bucketName: any, filePath: any) => Promise<import("aws-sdk/lib/request").PromiseResult<AWS.S3.GetObjectTaggingOutput, AWSError>>;
     zipObjects: (bucketName: any, folder: any, objects: any) => any;
     zipObjectsToBucket: (fromBucketName: any, fromFolder: any, objects: any, toBucketName: any, toPath: any) => Promise<any>;
+    updateClient: (opts: any) => void;
     config: import("aws-sdk/lib/config-base").ConfigBase & import("aws-sdk/lib/service").ServiceConfigurationOptions & import("aws-sdk/lib/config_use_dualstack").UseDualstackConfigOptions & AWS.S3.ClientApiVersions;
     apiVersions: string[];
     endpoint: AWS.Endpoint;
@@ -83,6 +84,12 @@ export const utils: {
     convertContentToJSON: (input: any, transformer?: (str: any) => any) => {};
 };
 export const HttpResponse: typeof import("./lib/http-response");
-export const lambdaClient: AWS.Lambda;
+export const lambdaClient: {
+    invokeLambda: (functionName: any, invocationType: any, payload: any, friendlyName: any, extraParameters?: {}) => Promise<import("aws-sdk/lib/request").PromiseResult<AWS.Lambda.InvocationResponse, AWSError>>;
+    updateClient: (opts: any) => void;
+    config: import("aws-sdk/lib/config-base").ConfigBase & import("aws-sdk/lib/service").ServiceConfigurationOptions & AWS.Lambda.ClientApiVersions;
+    apiVersions: string[];
+    endpoint: AWS.Endpoint;
+};
 export const lambdaWrapper: (lambda: any) => (event: any, context: any) => Promise<any>;
 export const redisClient: Record<string, Function>;

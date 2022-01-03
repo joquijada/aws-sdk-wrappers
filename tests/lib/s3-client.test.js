@@ -110,6 +110,10 @@ describe('S3Client', () => {
     jest.clearAllMocks()
   })
 
+  it('updates client', () => {
+    s3Client.updateClient({})
+  })
+
   it('sets local properties', () => {
     const prevStage = process.env.SHO_AWS_STAGE
     process.env.SHO_AWS_STAGE = 'local'
