@@ -1,3 +1,10 @@
+# [1.6.0](https://github.com/joquijada/aws-sdk-wrappers/compare/v1.5.4...v1.6.0) (2022-01-03)
+
+
+### Features
+
+* **client:** add capability to update client ([27df113](https://github.com/joquijada/aws-sdk-wrappers/commit/27df113da374e8c841945a9b6b19c76b16791ddf))
+
 ## [1.5.4](https://github.com/joquijada/aws-sdk-wrappers/compare/v1.5.3...v1.5.4) (2022-01-03)
 
 
