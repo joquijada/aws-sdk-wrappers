@@ -23,9 +23,17 @@ const EXPECTED_ARGUMENTS = {
 }
 
 describe('LambdaClient', () => {
-  it('overrides local client', async () => {
-    lambdaClient.updateLocalClient()
+  it('sets local properties', () => {
+    const prevStage = process.env.SHO_AWS_STAGE
+    process.env.SHO_AWS_STAGE = 'local'
+    let copyLambdaClient
+    jest.isolateModules(() => {
+      copyLambdaClient = require('../../lib/lambda-client')
+    })
+    console.log(copyLambdaClient)
+    process.env.SHO_AWS_STAGE = prevStage
   })
+
   describe('invokeLambda', () => {
     beforeEach(() => {
       jest.clearAllMocks()

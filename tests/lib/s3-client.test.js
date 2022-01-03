@@ -109,6 +109,18 @@ describe('S3Client', () => {
   beforeEach(() => {
     jest.clearAllMocks()
   })
+
+  it('sets local properties', () => {
+    const prevStage = process.env.SHO_AWS_STAGE
+    process.env.SHO_AWS_STAGE = 'local'
+    let copyS3Client
+    jest.isolateModules(() => {
+      copyS3Client = require('../../lib/s3-client')
+    })
+    console.log(copyS3Client)
+    process.env.SHO_AWS_STAGE = prevStage
+  })
+
   it('copies from one bucket to another', () => {
     const [fromBucket, fromPath, toBucket, toPath] = ['fromBucket', 'fromPath', 'toBucket', 'toPath']
     const expectedCopyObjectArg = {
@@ -291,44 +303,43 @@ describe('S3Client', () => {
     //       in the future.
     await s3Client.tag(testBucketName, testFilePath, 'updated-by')
   })
-})
+  describe('when listing objects in S3 bucket', () => {
+    it('returns S3 object metadata', async () => {
+      const s3Objects = await s3Client.list('TEST_BUCKET', 'test/file/path')
+      expect(s3Objects).toBeDefined()
+      expect(s3Objects.length).toEqual(MOCK_S3_LIST_OBJECTS_V2_METADATA.Contents.length)
 
-describe('when listing objects in S3 bucket', () => {
-  it('returns S3 object metadata', async () => {
-    const s3Objects = await s3Client.list('TEST_BUCKET', 'test/file/path')
-    expect(s3Objects).toBeDefined()
-    expect(s3Objects.length).toEqual(MOCK_S3_LIST_OBJECTS_V2_METADATA.Contents.length)
+      // s3Objects = JSON.parse(JSON.stringify(s3Objects))
+      // s3Objects[0].Key = "unhappyface.jpg"
 
-    // s3Objects = JSON.parse(JSON.stringify(s3Objects))
-    // s3Objects[0].Key = "unhappyface.jpg"
+      // will sort MOCKed and resulting array elements by ETag so we can compare them using jest (one-liner)
+      const sortByETag = (lhs, rhs) => {
+        lhs.ETag.localeCompare(rhs.ETag)
+      }
+      expect(s3Objects.sort(sortByETag)).toEqual(MOCK_S3_LIST_OBJECTS_V2_METADATA.Contents.sort(sortByETag))
+    })
 
-    // will sort MOCKed and resulting array elements by ETag so we can compare them using jest (one-liner)
-    const sortByETag = (lhs, rhs) => {
-      lhs.ETag.localeCompare(rhs.ETag)
-    }
-    expect(s3Objects.sort(sortByETag)).toEqual(MOCK_S3_LIST_OBJECTS_V2_METADATA.Contents.sort(sortByETag))
-  })
+    it('returns correct number of S3 objects when S3 client uses "NextContinuationToken" in response payload.', async () => {
+      // When more than 1 listObjectsV2 call is needed to retrieve bucket keys, NextContinuationToken
+      // is present and isTruncated is set to true
+      // we'll deep clone the mocked listObjectV2 result fixture and modify to simulate that scenario
+      let payload1 = cloneDeep(MOCK_S3_LIST_OBJECTS_V2_METADATA)
+      let payload2 = cloneDeep(MOCK_S3_LIST_OBJECTS_V2_METADATA)
 
-  it('returns correct number of S3 objects when S3 client uses "NextContinuationToken" in response payload.', async () => {
-    // When more than 1 listObjectsV2 call is needed to retrieve bucket keys, NextContinuationToken
-    // is present and isTruncated is set to true
-    // we'll deep clone the mocked listObjectV2 result fixture and modify to simulate that scenario
-    let payload1 = cloneDeep(MOCK_S3_LIST_OBJECTS_V2_METADATA)
-    let payload2 = cloneDeep(MOCK_S3_LIST_OBJECTS_V2_METADATA)
+      payload1 = { ...payload1, ...{ IsTruncated: true, NextContinuationToken: 'XXX-Token-XXX' } }
+      payload2 = { ...payload2, ...{ IsTruncated: false, NextContinuationToken: undefined } }
 
-    payload1 = { ...payload1, ...{ IsTruncated: true, NextContinuationToken: 'XXX-Token-XXX' } }
-    payload2 = { ...payload2, ...{ IsTruncated: false, NextContinuationToken: undefined } }
+      mockListObjectsV2
+        .mockImplementationOnce(() => ({
+          promise: () => Promise.resolve(payload1) // contains 'NextContinuationToken'
+        }))
+        .mockImplementationOnce(() => ({
+          promise: () => Promise.resolve(payload2)
+        }))
 
-    mockListObjectsV2
-      .mockImplementationOnce(() => ({
-        promise: () => Promise.resolve(payload1) // contains 'NextContinuationToken'
-      }))
-      .mockImplementationOnce(() => ({
-        promise: () => Promise.resolve(payload2)
-      }))
-
-    const s3Objects = await s3Client.list('TEST_BUCKET', 'test/file/path')
-    expect(s3Objects).toBeDefined()
-    expect(s3Objects.length).toEqual(payload1.Contents.length + payload2.Contents.length)
+      const s3Objects = await s3Client.list('TEST_BUCKET', 'test/file/path')
+      expect(s3Objects).toBeDefined()
+      expect(s3Objects.length).toEqual(payload1.Contents.length + payload2.Contents.length)
+    })
   })
 })

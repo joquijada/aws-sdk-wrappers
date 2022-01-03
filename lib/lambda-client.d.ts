@@ -1,2 +1,3 @@
-export function invokeLambda(functionName: any, invocationType: any, payload: any, friendlyName: any, extraParameters?: {}): Promise<any>;
-export function updateLocalClient(options: any): void;
+export = lambdaClient;
+declare const lambdaClient: Lambda;
+import { Lambda } from "aws-sdk/clients/all";
