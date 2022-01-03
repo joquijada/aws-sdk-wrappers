@@ -1,3 +1,10 @@
+## [1.5.4](https://github.com/joquijada/aws-sdk-wrappers/compare/v1.5.3...v1.5.4) (2022-01-03)
+
+
+### Bug Fixes
+
+* **client:** simplify ([5d2ba87](https://github.com/joquijada/aws-sdk-wrappers/commit/5d2ba877d77eef05682794d35f06d8c33989b824))
+
 ## [1.5.3](https://github.com/joquijada/aws-sdk-wrappers/compare/v1.5.2...v1.5.3) (2021-12-29)
 
 
