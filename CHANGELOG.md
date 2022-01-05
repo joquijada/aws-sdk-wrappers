@@ -1,3 +1,10 @@
+# [1.7.0](https://github.com/joquijada/aws-sdk-wrappers/compare/v1.6.0...v1.7.0) (2022-01-05)
+
+
+### Features
+
+* **ses:** add ses client ([62a247e](https://github.com/joquijada/aws-sdk-wrappers/commit/62a247e4635f4f12f137af548c5d7c71e7646e70))
+
 # [1.6.0](https://github.com/joquijada/aws-sdk-wrappers/compare/v1.5.4...v1.6.0) (2022-01-03)
 
 
