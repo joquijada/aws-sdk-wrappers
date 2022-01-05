@@ -93,3 +93,8 @@ export const lambdaClient: {
 };
 export const lambdaWrapper: (lambda: any) => (event: any, context: any) => Promise<any>;
 export const redisClient: Record<string, Function>;
+export const sesClient: {
+    config: import("aws-sdk/lib/config-base").ConfigBase & import("aws-sdk/lib/service").ServiceConfigurationOptions & AWS.SES.ClientApiVersions;
+    apiVersions: string[];
+    endpoint: AWS.Endpoint;
+};

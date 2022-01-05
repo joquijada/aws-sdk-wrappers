@@ -9,5 +9,6 @@ module.exports = {
   HttpResponse: require('./lib/http-response'),
   lambdaClient: require('./lib/lambda-client'),
   lambdaWrapper: require('./lib/lambda-wrapper'),
-  redisClient: require('./lib/redis-client')
+  redisClient: require('./lib/redis-client'),
+  sesClient: require('./lib/ses-client')
 }
