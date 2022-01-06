@@ -30,14 +30,18 @@ describe('http-response', () => {
     const res = new HttpResponse(200, '', {
       name: 'value',
       headers: { hdr1: 'hdr val' },
-      body: 'the body',
+      body: {
+        foo: 'bar'
+      },
       cookies: ['cookie 1']
     })
     expect(res.toAwsApiGatewayFormat()).toEqual({
       statusCode: 200,
       headers: { hdr1: 'hdr val' },
       cookies: ['cookie 1'],
-      body: 'the body'
+      body: JSON.stringify({
+        foo: 'bar'
+      }, null, ' ')
     })
   })
 })
