@@ -1,3 +1,10 @@
+## [1.7.2](https://github.com/joquijada/aws-sdk-wrappers/compare/v1.7.1...v1.7.2) (2022-01-06)
+
+
+### Bug Fixes
+
+* **http-response:** always serialize 'body' ([d835306](https://github.com/joquijada/aws-sdk-wrappers/commit/d8353060d35f10322e3d2054c982b2f289b12dcc))
+
 ## [1.7.1](https://github.com/joquijada/aws-sdk-wrappers/compare/v1.7.0...v1.7.1) (2022-01-06)
 
 
