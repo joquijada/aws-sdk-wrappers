@@ -1,3 +1,10 @@
+## [1.7.1](https://github.com/joquijada/aws-sdk-wrappers/compare/v1.7.0...v1.7.1) (2022-01-06)
+
+
+### Bug Fixes
+
+* **client:** expose native client api ([4488a65](https://github.com/joquijada/aws-sdk-wrappers/commit/4488a652e179f43a458e88fef4894b48537eb49d))
+
 # [1.7.0](https://github.com/joquijada/aws-sdk-wrappers/compare/v1.6.0...v1.7.0) (2022-01-05)
 
 
