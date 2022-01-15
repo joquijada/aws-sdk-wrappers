@@ -205,8 +205,8 @@ describe('S3Client', () => {
       bucket: args[0],
       preserveFolderStructure: true
     }, args[1], [args[2][0], args[2][1], args[2][2],
-      `obj4/${MOCK_S3_LIST_OBJECTS_V2_METADATA.Contents[0].Key}`, `obj4/${MOCK_S3_LIST_OBJECTS_V2_METADATA.Contents[1].Key}`,
-      'obj4/fileX.pdf', 'obj4/fileZ.pdf'])
+      `from-folder/obj4/${MOCK_S3_LIST_OBJECTS_V2_METADATA.Contents[0].Key}`, `from-folder/obj4/${MOCK_S3_LIST_OBJECTS_V2_METADATA.Contents[1].Key}`,
+      'from-folder/obj4/fileX.pdf', 'from-folder/obj4/fileZ.pdf'])
     expect(global.promisifiedPipelineMock.mock.calls[0][0]).toEqual(s3ZipArchiveReturnValue)
     expect(JSON.stringify(global.promisifiedPipelineMock.mock.calls[0][1])).toEqual(JSON.stringify(passThrough))
   })
@@ -367,7 +367,7 @@ describe('S3Client', () => {
   })
 })
 
-function prepareS3ListObjectsV2Mock(payloads) {
+function prepareS3ListObjectsV2Mock (payloads) {
   const last = payloads.length - 1
   payloads.forEach((payload, idx) => {
     // All but the last one will contain 'NextContinuationToken'
@@ -376,9 +376,13 @@ function prepareS3ListObjectsV2Mock(payloads) {
     } else {
       payload = { ...payload, ...{ IsTruncated: true, NextContinuationToken: 'XXX-Token-XXX' } }
     }
-    mockListObjectsV2
-      .mockImplementationOnce(() => ({
-        promise: () => Promise.resolve(payload)
-      }))
+    mockListObjectsV2.mockImplementationOnce((params) => ({
+      promise: () => {
+        for (const c of payload.Contents) {
+          c.Key = `${params.Prefix}${c.Key}`
+        }
+        return Promise.resolve(payload)
+      }
+    }))
   })
 }
