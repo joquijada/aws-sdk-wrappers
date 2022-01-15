@@ -1,3 +1,10 @@
+# [1.8.0](https://github.com/joquijada/aws-sdk-wrappers/compare/v1.7.2...v1.8.0) (2022-01-15)
+
+
+### Features
+
+* **zip:** handle bucket folders in list of assets to Zip ([9609001](https://github.com/joquijada/aws-sdk-wrappers/commit/9609001ef3f991c99c396ffe30f363e65b0b4f62))
+
 ## [1.7.2](https://github.com/joquijada/aws-sdk-wrappers/compare/v1.7.1...v1.7.2) (2022-01-06)
 
 
