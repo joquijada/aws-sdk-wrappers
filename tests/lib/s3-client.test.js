@@ -185,15 +185,28 @@ describe('S3Client', () => {
 
   it('Zips S3 objects and stores the Zip on S3', async () => {
     process.env.SHO_AWS_STAGE = 'local'
+    const payload1 = cloneDeep(MOCK_S3_LIST_OBJECTS_V2_METADATA)
+    const payload2 = cloneDeep(MOCK_S3_LIST_OBJECTS_V2_METADATA)
+    // Change the file names around a bit
+    payload2.Contents[0].Key = 'fileX.pdf'
+    payload2.Contents[1].Key = 'fileZ.pdf'
+    prepareS3ListObjectsV2Mock([payload1, payload2])
+
     const zipPipelinePromiseSuccess = 'THIS IS A TEST: Zip pipeline was successful'
     global.promisifiedPipelineMock.mockResolvedValueOnce(zipPipelinePromiseSuccess)
     const s3ZipArchiveReturnValue = {
       foo: 'bar'
     }
     s3Zip.archive.mockReturnValueOnce(s3ZipArchiveReturnValue)
-    const args = ['from-bucket', 'from-folder', ['obj1', 'obj2', 'obj3']]
+    const args = ['from-bucket', 'from-folder', ['obj1', 'obj2', 'obj3', 'obj4/']]
     await s3Client.zipObjectsToBucket(...args)
-    expect(s3Zip.archive).toHaveBeenLastCalledWith({ s3: mockS3(), bucket: args[0] }, args[1], args[2])
+    expect(s3Zip.archive).toHaveBeenLastCalledWith({
+      s3: s3Client,
+      bucket: args[0],
+      preserveFolderStructure: true
+    }, args[1], [args[2][0], args[2][1], args[2][2],
+      `obj4/${MOCK_S3_LIST_OBJECTS_V2_METADATA.Contents[0].Key}`, `obj4/${MOCK_S3_LIST_OBJECTS_V2_METADATA.Contents[1].Key}`,
+      'obj4/fileX.pdf', 'obj4/fileZ.pdf'])
     expect(global.promisifiedPipelineMock.mock.calls[0][0]).toEqual(s3ZipArchiveReturnValue)
     expect(JSON.stringify(global.promisifiedPipelineMock.mock.calls[0][1])).toEqual(JSON.stringify(passThrough))
   })
@@ -232,6 +245,21 @@ describe('S3Client', () => {
       throw new Error('Should have thrown an error')
     } catch (e) {
       expect(e).toBe(zipUploadToS3PromiseError)
+    }
+  })
+
+  it('throws error if folder expansion fails during Zip', async () => {
+    const s3ListError = 'THIS IS A TEST: Problem listing S3 bucket folder'
+    try {
+      mockListObjectsV2.mockImplementationOnce(() => ({
+        promise: () => Promise.reject(s3ListError)
+      }))
+      process.env.SHO_AWS_STAGE = 'local'
+      const args = ['from-bucket', 'from-folder', ['obj1', 'obj2', 'obj3', 'obj4/']]
+      await s3Client.zipObjectsToBucket(...args)
+      throw new Error('Should have thrown an error')
+    } catch (e) {
+      expect(e).toBe(s3ListError)
     }
   })
 
@@ -327,19 +355,10 @@ describe('S3Client', () => {
       // When more than 1 listObjectsV2 call is needed to retrieve bucket keys, NextContinuationToken
       // is present and isTruncated is set to true
       // we'll deep clone the mocked listObjectV2 result fixture and modify to simulate that scenario
-      let payload1 = cloneDeep(MOCK_S3_LIST_OBJECTS_V2_METADATA)
-      let payload2 = cloneDeep(MOCK_S3_LIST_OBJECTS_V2_METADATA)
+      const payload1 = cloneDeep(MOCK_S3_LIST_OBJECTS_V2_METADATA)
+      const payload2 = cloneDeep(MOCK_S3_LIST_OBJECTS_V2_METADATA)
 
-      payload1 = { ...payload1, ...{ IsTruncated: true, NextContinuationToken: 'XXX-Token-XXX' } }
-      payload2 = { ...payload2, ...{ IsTruncated: false, NextContinuationToken: undefined } }
-
-      mockListObjectsV2
-        .mockImplementationOnce(() => ({
-          promise: () => Promise.resolve(payload1) // contains 'NextContinuationToken'
-        }))
-        .mockImplementationOnce(() => ({
-          promise: () => Promise.resolve(payload2)
-        }))
+      prepareS3ListObjectsV2Mock([payload1, payload2])
 
       const s3Objects = await s3Client.list('TEST_BUCKET', 'test/file/path')
       expect(s3Objects).toBeDefined()
@@ -347,3 +366,19 @@ describe('S3Client', () => {
     })
   })
 })
+
+function prepareS3ListObjectsV2Mock(payloads) {
+  const last = payloads.length - 1
+  payloads.forEach((payload, idx) => {
+    // All but the last one will contain 'NextContinuationToken'
+    if (idx === last) {
+      payload = { ...payload, ...{ IsTruncated: false, NextContinuationToken: undefined } }
+    } else {
+      payload = { ...payload, ...{ IsTruncated: true, NextContinuationToken: 'XXX-Token-XXX' } }
+    }
+    mockListObjectsV2
+      .mockImplementationOnce(() => ({
+        promise: () => Promise.resolve(payload)
+      }))
+  })
+}
