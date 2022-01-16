@@ -1,3 +1,10 @@
+## [1.8.2](https://github.com/joquijada/aws-sdk-wrappers/compare/v1.8.1...v1.8.2) (2022-01-16)
+
+
+### Bug Fixes
+
+* **zip:** fix paths so thatthey're relative to parent folder ([96aabe0](https://github.com/joquijada/aws-sdk-wrappers/commit/96aabe05762297e4af6af129d22cea15515412fd))
+
 ## [1.8.1](https://github.com/joquijada/aws-sdk-wrappers/compare/v1.8.0...v1.8.1) (2022-01-15)
 
 
