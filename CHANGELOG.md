@@ -1,3 +1,10 @@
+## [1.8.3](https://github.com/joquijada/aws-sdk-wrappers/compare/v1.8.2...v1.8.3) (2022-01-16)
+
+
+### Bug Fixes
+
+* **list:** add more debug info ([ea66e96](https://github.com/joquijada/aws-sdk-wrappers/commit/ea66e9644bdc167e7db7339a541b2ee9c9fec992))
+
 ## [1.8.2](https://github.com/joquijada/aws-sdk-wrappers/compare/v1.8.1...v1.8.2) (2022-01-16)
 
 
