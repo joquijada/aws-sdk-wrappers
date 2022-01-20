@@ -114,6 +114,11 @@ describe('S3Client', () => {
     s3Client.updateClient({})
   })
 
+  it('builds new client', () => {
+    const newClient = s3Client.buildNewClient({})
+    expect(newClient).not.toBe(s3Client)
+  })
+
   it('sets local properties', () => {
     const prevStage = process.env.SHO_AWS_STAGE
     process.env.SHO_AWS_STAGE = 'local'
