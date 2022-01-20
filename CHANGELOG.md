@@ -1,3 +1,10 @@
+# [1.9.0](https://github.com/joquijada/aws-sdk-wrappers/compare/v1.8.3...v1.9.0) (2022-01-20)
+
+
+### Features
+
+* **s3:** add method to build brand new client ([d940fa0](https://github.com/joquijada/aws-sdk-wrappers/commit/d940fa0008d3af83f9ed7ff3c049a15c0659d730))
+
 ## [1.8.3](https://github.com/joquijada/aws-sdk-wrappers/compare/v1.8.2...v1.8.3) (2022-01-16)
 
 
