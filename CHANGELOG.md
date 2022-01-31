@@ -1,3 +1,10 @@
+## [1.9.1](https://github.com/joquijada/aws-sdk-wrappers/compare/v1.9.0...v1.9.1) (2022-01-31)
+
+
+### Bug Fixes
+
+* **zip:** handle zipping when files are in root bucket folder ([99e4ad1](https://github.com/joquijada/aws-sdk-wrappers/commit/99e4ad184bedf96803ced05972822b65e567d23f))
+
 # [1.9.0](https://github.com/joquijada/aws-sdk-wrappers/compare/v1.8.3...v1.9.0) (2022-01-20)
 
 
