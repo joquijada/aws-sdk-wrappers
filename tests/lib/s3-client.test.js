@@ -34,7 +34,6 @@ const MOCK_S3_LIST_OBJECTS_V2_METADATA = {
   KeyCount: 2,
   MaxKeys: 2,
   Name: 'examplebucket',
-  // NextContinuationToken: "1w41l63U0xa8q7smH50vCxyTQqdxo69O3EmK28Bi5PcROI4wI/EyIJg==",
   Prefix: ''
 }
 
@@ -214,6 +213,55 @@ describe('S3Client', () => {
       'obj4/fileX.pdf', 'obj4/fileZ.pdf'])
     expect(global.promisifiedPipelineMock.mock.calls[0][0]).toEqual(s3ZipArchiveReturnValue)
     expect(JSON.stringify(global.promisifiedPipelineMock.mock.calls[0][1])).toEqual(JSON.stringify(passThrough))
+    expect(mockListObjectsV2).toHaveBeenNthCalledWith(1, {
+      Bucket: 'from-bucket',
+      Prefix: 'from-folder/obj4/'
+    })
+    expect(mockListObjectsV2).toHaveBeenNthCalledWith(2, {
+      Bucket: 'from-bucket',
+      Prefix: 'from-folder/obj4/'
+    })
+  })
+
+  it('Zips S3 objects that are at the top level in the bucket', async () => {
+    /*
+     * Essentially this is the same test as above, only difference is that the files to Zip are located at the
+     * root level inside  the bucket
+     */
+    process.env.SHO_AWS_STAGE = 'local'
+    const payload1 = cloneDeep(MOCK_S3_LIST_OBJECTS_V2_METADATA)
+    const payload2 = cloneDeep(MOCK_S3_LIST_OBJECTS_V2_METADATA)
+    // Change the file names around a bit
+    payload2.Contents[0].Key = 'fileX.pdf'
+    payload2.Contents[1].Key = 'fileZ.pdf'
+    prepareS3ListObjectsV2Mock([payload1, payload2])
+
+    const zipPipelinePromiseSuccess = 'THIS IS A TEST: Zip pipeline was successful'
+    global.promisifiedPipelineMock.mockResolvedValueOnce(zipPipelinePromiseSuccess)
+    const s3ZipArchiveReturnValue = {
+      foo: 'bar'
+    }
+    s3Zip.archive.mockReturnValueOnce(s3ZipArchiveReturnValue)
+    // The 'from folder' is blank because the objects to Zip are at the top level
+    const args = ['from-bucket', '', ['obj1', 'obj2', 'obj3', 'obj4/']]
+    await s3Client.zipObjectsToBucket(...args)
+    expect(s3Zip.archive).toHaveBeenLastCalledWith({
+      s3: s3Client,
+      bucket: args[0],
+      preserveFolderStructure: true
+    }, args[1], [args[2][0], args[2][1], args[2][2],
+      `obj4/${MOCK_S3_LIST_OBJECTS_V2_METADATA.Contents[0].Key}`, `obj4/${MOCK_S3_LIST_OBJECTS_V2_METADATA.Contents[1].Key}`,
+      'obj4/fileX.pdf', 'obj4/fileZ.pdf'])
+    expect(global.promisifiedPipelineMock.mock.calls[0][0]).toEqual(s3ZipArchiveReturnValue)
+    expect(JSON.stringify(global.promisifiedPipelineMock.mock.calls[0][1])).toEqual(JSON.stringify(passThrough))
+    expect(mockListObjectsV2).toHaveBeenNthCalledWith(1, {
+      Bucket: 'from-bucket',
+      Prefix: 'obj4/'
+    })
+    expect(mockListObjectsV2).toHaveBeenNthCalledWith(2, {
+      Bucket: 'from-bucket',
+      Prefix: 'obj4/'
+    })
   })
 
   it('throws error if Zip pipeline fails', async () => {
