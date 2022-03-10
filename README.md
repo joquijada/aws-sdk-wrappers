@@ -1,9 +1,9 @@
-# common-util
+# aws-sdk-wrappers
 > A collection of common libraries and utilities used throughout Node.js projects in Showtime
 
 <!-- TOC titleSize:2 tabSpaces:2 depthFrom:1 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 skip:0 title:1 charForUnorderedList:* -->
 ## Table of Contents
-* [common-util](#common-util)
+* [aws-sdk-wrappers](#aws-sdk-wrappers)
     * [Install](#install)
     * [Libraries](#libraries)
     * [For Developers](#for-developers)
@@ -11,7 +11,7 @@
 
 ### Install
 ```shell
-npm install @exsoinn/common-util
+npm install @exsoinn/aws-sdk-wrappers
 ```
 
 ### Libraries

@@ -1,18 +1,6 @@
 const convertContentToJSON = require('../../lib/convert-content-to-json')
 const cloneDeep = require('lodash.clonedeep')
 
-const testMultiPartFormContent = {
-  headers: { 'content-type': 'multipart/form-data; boundary=--------------------------902535600354793971983507' },
-  body: multiPartFormData(),
-  isBase64Encoded: true
-}
-
-const testUrlEncodedContent = {
-  headers: { 'content-type': 'application/x-www-form-urlencoded' },
-  body: 'Zmlyc3RfbmFtZT1Kb3NlJmxhc3RfbmFtZT1RdWlqYWRhJmFkZHJlc3MxPTY3MCUyMFN1bGxpdmFuJTIwVHJhaWwmY2l0eT1Mb25nJTIwUG9uZCZzdGF0ZT1QQSZwb3N0YWxfY29kZT0xODMzNCZjb3VudHJ5PVVTJm51bWJlcj00MTExMTExMTExMTExMTExJm1vbnRoPTA1JnllYXI9MjAyNSZjdnY9MTIzJmtleT1ld3IxLWp4VFpDVldzYjlBMHlsellOVlNEb1gmaW5zdGFuY2VJZD1TUzVEaGdYQmZEU3U3YWJr',
-  isBase64Encoded: true
-}
-
 const expectedOutput = {
   first_name: 'Jose',
   last_name: 'Quijada',
@@ -29,6 +17,24 @@ const expectedOutput = {
   instanceId: 'SS5DhgXBfDSu7abk'
 }
 
+const testMultiPartFormContent = {
+  headers: { 'content-type': 'multipart/form-data; boundary=--------------------------902535600354793971983507' },
+  body: multiPartFormData(),
+  isBase64Encoded: true
+}
+
+const testUrlEncodedContent = {
+  headers: { 'content-type': 'application/x-www-form-urlencoded' },
+  body: 'Zmlyc3RfbmFtZT1Kb3NlJmxhc3RfbmFtZT1RdWlqYWRhJmFkZHJlc3MxPTY3MCUyMFN1bGxpdmFuJTIwVHJhaWwmY2l0eT1Mb25nJTIwUG9uZCZzdGF0ZT1QQSZwb3N0YWxfY29kZT0xODMzNCZjb3VudHJ5PVVTJm51bWJlcj00MTExMTExMTExMTExMTExJm1vbnRoPTA1JnllYXI9MjAyNSZjdnY9MTIzJmtleT1ld3IxLWp4VFpDVldzYjlBMHlsellOVlNEb1gmaW5zdGFuY2VJZD1TUzVEaGdYQmZEU3U3YWJr',
+  isBase64Encoded: true
+}
+
+const testJsonContent = {
+  headers: { 'content-type': 'application/json' },
+  body: JSON.stringify(expectedOutput),
+  isBase64Encoded: false
+}
+
 describe('convert-content-to-json', () => {
   it('converts multipart/form-data content', () => {
     expect(convertContentToJSON(testMultiPartFormContent)).toEqual(expectedOutput)
@@ -36,6 +42,10 @@ describe('convert-content-to-json', () => {
 
   it('converts application/x-www-form-urlencoded content', () => {
     expect(convertContentToJSON(testUrlEncodedContent)).toEqual(expectedOutput)
+  })
+
+  it('converts application/json', () => {
+    expect(convertContentToJSON(testJsonContent)).toEqual(expectedOutput)
   })
 
   it('returns null if content type is not recognized', () => {
