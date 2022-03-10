@@ -1,3 +1,10 @@
+## [1.9.2](https://github.com/joquijada/aws-sdk-wrappers/compare/v1.9.1...v1.9.2) (2022-03-10)
+
+
+### Bug Fixes
+
+* **content:** handle json request payloads ([5df62e2](https://github.com/joquijada/aws-sdk-wrappers/commit/5df62e29360c6b224f1a6e21e448ab18e207e335))
+
 ## [1.9.1](https://github.com/joquijada/aws-sdk-wrappers/compare/v1.9.0...v1.9.1) (2022-01-31)
 
 
