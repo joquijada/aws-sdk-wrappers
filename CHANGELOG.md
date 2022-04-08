@@ -1,3 +1,10 @@
+# [1.10.0](https://github.com/joquijada/aws-sdk-wrappers/compare/v1.9.2...v1.10.0) (2022-04-08)
+
+
+### Features
+
+* **axios:** export axios post method ([291915c](https://github.com/joquijada/aws-sdk-wrappers/commit/291915c9debb9991e870e23d686919ce42cd9e37))
+
 ## [1.9.2](https://github.com/joquijada/aws-sdk-wrappers/compare/v1.9.1...v1.9.2) (2022-03-10)
 
 
