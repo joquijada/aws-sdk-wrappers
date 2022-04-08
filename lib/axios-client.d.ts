@@ -5,3 +5,4 @@ export function passThroughLambdaEvent(url: any, event: any): Promise<{
     headers: any;
     statusCode: any;
 }>;
+export function post(args: any): any;

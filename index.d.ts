@@ -8,6 +8,7 @@ export const axiosClient: {
         headers: any;
         statusCode: any;
     }>;
+    post: (args: any) => any;
 };
 export const dynamoDbClient: {
     copyTable: (params: any) => Promise<any>;
@@ -24,7 +25,7 @@ export const sqsClient: {
 };
 export const utils: {
     isString: (argument: any) => boolean;
-    convertContentToJSON: (input: any, transformer?: (str: any) => any) => {};
+    convertContentToJSON: (input: any, transformer?: (str: any) => any) => any;
 };
 export const HttpResponse: typeof import("./lib/http-response");
 export const lambdaClient: AWS.Lambda;

@@ -150,5 +150,11 @@ describe('AxiosClient', () => {
         statusCode: 500
       })
     })
+
+    it('invokes axios post', async () => {
+      const req = { foo: 'bar' }
+      axiosClient.post(req)
+      expect(axios.post).toHaveBeenCalledWith(req)
+    })
   })
 })
