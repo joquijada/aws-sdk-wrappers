@@ -8,7 +8,7 @@ export const axiosClient: {
         headers: any;
         statusCode: any;
     }>;
-    post: (args: any) => any;
+    post: (...args: any[]) => any;
 };
 export const dynamoDbClient: {
     copyTable: (params: any) => Promise<any>;
