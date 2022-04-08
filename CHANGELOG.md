@@ -1,3 +1,10 @@
+## [1.10.2](https://github.com/joquijada/aws-sdk-wrappers/compare/v1.10.1...v1.10.2) (2022-04-08)
+
+
+### Bug Fixes
+
+* **axios:** pass through all arguments using rest params/spread syntax ([ce40c30](https://github.com/joquijada/aws-sdk-wrappers/commit/ce40c30a332f51a7ea94fa36ded28a3831c133a7))
+
 ## [1.10.1](https://github.com/joquijada/aws-sdk-wrappers/compare/v1.10.0...v1.10.1) (2022-04-08)
 
 
