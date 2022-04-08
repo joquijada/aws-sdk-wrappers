@@ -1,3 +1,10 @@
+## [1.10.1](https://github.com/joquijada/aws-sdk-wrappers/compare/v1.10.0...v1.10.1) (2022-04-08)
+
+
+### Bug Fixes
+
+* **axios:** await post response ([27d3bd4](https://github.com/joquijada/aws-sdk-wrappers/commit/27d3bd411e6fdd44448a3c9d5a9cc3cd153cb253))
+
 # [1.10.0](https://github.com/joquijada/aws-sdk-wrappers/compare/v1.9.2...v1.10.0) (2022-04-08)
 
 
