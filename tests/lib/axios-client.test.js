@@ -152,9 +152,10 @@ describe('AxiosClient', () => {
     })
 
     it('invokes axios post', async () => {
+      const url = 'http://www.acme.com/path'
       const req = { foo: 'bar' }
-      await axiosClient.post(req)
-      expect(axios.post).toHaveBeenCalledWith(req)
+      await axiosClient.post(url, req)
+      expect(axios.post).toHaveBeenCalledWith(url, req)
     })
   })
 })
