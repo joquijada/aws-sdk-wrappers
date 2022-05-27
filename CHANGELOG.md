@@ -1,3 +1,10 @@
+## [1.10.4](https://github.com/joquijada/aws-sdk-wrappers/compare/v1.10.3...v1.10.4) (2022-05-27)
+
+
+### Bug Fixes
+
+* **s3:** reduce debug statement noise ([0968468](https://github.com/joquijada/aws-sdk-wrappers/commit/096846883d10d36c89ab03da69bcd801b4cfbaa8))
+
 ## [1.10.3](https://github.com/joquijada/aws-sdk-wrappers/compare/v1.10.2...v1.10.3) (2022-04-08)
 
 
