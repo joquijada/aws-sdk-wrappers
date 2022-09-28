@@ -1,5 +1,5 @@
 # aws-sdk-wrappers
-> A collection of common libraries and utilities used throughout Node.js projects in Showtime
+> A collection of wrappers around common libraries and utilities that can be used in Node.js/NPM projects.
 
 <!-- TOC titleSize:2 tabSpaces:2 depthFrom:1 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 skip:0 title:1 charForUnorderedList:* -->
 ## Table of Contents
