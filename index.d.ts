@@ -1,4 +1,5 @@
 import { AWSError } from "aws-sdk/lib/core";
+import * as AWS from 'aws-sdk'
 import { SQS } from "aws-sdk/clients/all";
 export const axiosClient: {
     get: (url: any, callback: any, options?: {}) => any;
@@ -10,6 +11,7 @@ export const axiosClient: {
     }>;
     post: (...args: any[]) => any;
 };
+export const cognitoIdentityServiceProvider: AWS.CognitoIdentityServiceProvider;
 export const dynamoDbClient: {
     copyTable: (params: any) => Promise<any>;
     delete: (params: any) => Promise<import("aws-sdk/lib/request").PromiseResult<AWS.DynamoDB.DocumentClient.DeleteItemOutput, AWSError>>;

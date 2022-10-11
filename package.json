@@ -8,7 +8,7 @@
     "types": "rm -rf ./lib/*.d.ts && npx tsc",
     "release": "npx semantic-release@17.4.2 --no-ci",
     "release:dry-run": "npx semantic-release@17.4.2 --no-ci --dry-run",
-    "test": "npm run types && jest --config=\"./jest.config.js\" --coverage"
+    "test": "jest --config=\"./jest.config.js\" --coverage"
   },
   "repository": {
     "type": "git",

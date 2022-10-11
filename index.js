@@ -2,6 +2,7 @@
 const { AWSError, SQS } = require('aws-sdk') // Added these to prevent error in tsc-generated type declaration
 module.exports = {
   axiosClient: require('./lib/axios-client'),
+  cognitoIdentityServiceProvider: require('./lib/cognito-identity-service-provider'),
   dynamoDbClient: require('./lib/dynamo-db-client'),
   s3Client: require('./lib/s3-client'),
   sqsClient: require('./lib/sqs-client'),
