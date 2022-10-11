@@ -1,3 +1,10 @@
+# [1.11.0](https://github.com/joquijada/aws-sdk-wrappers/compare/v1.10.4...v1.11.0) (2022-10-11)
+
+
+### Features
+
+* **cognito:** add cognito service provider wrapper ([c503bf9](https://github.com/joquijada/aws-sdk-wrappers/commit/c503bf9bcbe397eda0d7723b03f9b53d08cb27a9))
+
 ## [1.10.4](https://github.com/joquijada/aws-sdk-wrappers/compare/v1.10.3...v1.10.4) (2022-05-27)
 
 
