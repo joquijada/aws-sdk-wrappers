@@ -1,5 +1,4 @@
 import { AWSError } from "aws-sdk/lib/core";
-import * as AWS from 'aws-sdk'
 import { SQS } from "aws-sdk/clients/all";
 export const axiosClient: {
     get: (url: any, callback: any, options?: {}) => any;
@@ -34,3 +33,4 @@ export const lambdaClient: AWS.Lambda;
 export const lambdaWrapper: (lambda: any) => (event: any, context: any) => Promise<any>;
 export const redisClient: Record<string, Function>;
 export const sesClient: AWS.SES;
+export const cloudWatchClient: AWS.CloudWatch;

@@ -1,2 +1,3 @@
 export = cognitoIdentityServiceProvider;
-declare const cognitoIdentityServiceProvider: any;
+declare const cognitoIdentityServiceProvider: CognitoIdentityServiceProvider;
+import { CognitoIdentityServiceProvider } from "aws-sdk/clients/all";
