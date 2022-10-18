@@ -1,3 +1,10 @@
+# [1.12.0](https://github.com/joquijada/aws-sdk-wrappers/compare/v1.11.0...v1.12.0) (2022-10-18)
+
+
+### Features
+
+* **cw:** add cloutwatch wrapper ([0c38369](https://github.com/joquijada/aws-sdk-wrappers/commit/0c383693b828fecc072b1146ce2cb9aa3b32e368))
+
 # [1.11.0](https://github.com/joquijada/aws-sdk-wrappers/compare/v1.10.4...v1.11.0) (2022-10-11)
 
 
