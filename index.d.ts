@@ -1,5 +1,7 @@
 import { AWSError } from "aws-sdk/lib/core";
 import { SQS } from "aws-sdk/clients/all";
+import * as AWS from 'aws-sdk'
+
 export const axiosClient: {
     get: (url: any, callback: any, options?: {}) => any;
     getAsStream: (url: any, callback: any, options?: {}) => any;
@@ -35,3 +37,4 @@ export const redisClient: Record<string, Function>;
 export const sesClient: AWS.SES;
 export const cloudWatchClient: AWS.CloudWatch;
 export const cloudFrontClient: AWS.CloudFront;
+export const cloudFormationClient: AWS.CloudFormation;
