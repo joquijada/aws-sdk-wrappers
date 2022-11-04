@@ -1,3 +1,11 @@
+# [1.13.0](https://github.com/joquijada/aws-sdk-wrappers/compare/v1.12.0...v1.13.0) (2022-11-04)
+
+
+### Features
+
+* **cloud-formation:** add cloud formation ([e074792](https://github.com/joquijada/aws-sdk-wrappers/commit/e074792c973a2c8e42cacdb7e4204449378cb6f0))
+* **cloud-front:** add cloud front ([2ef5c49](https://github.com/joquijada/aws-sdk-wrappers/commit/2ef5c49333bfe9c6e8fd18b7870c74d9c345e66e))
+
 # [1.12.0](https://github.com/joquijada/aws-sdk-wrappers/compare/v1.11.0...v1.12.0) (2022-10-18)
 
 
