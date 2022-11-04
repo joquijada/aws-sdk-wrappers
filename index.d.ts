@@ -34,3 +34,4 @@ export const lambdaWrapper: (lambda: any) => (event: any, context: any) => Promi
 export const redisClient: Record<string, Function>;
 export const sesClient: AWS.SES;
 export const cloudWatchClient: AWS.CloudWatch;
+export const cloudFrontClient: AWS.CloudFront;

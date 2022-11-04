@@ -12,5 +12,6 @@ module.exports = {
   lambdaWrapper: require('./lib/lambda-wrapper'),
   redisClient: require('./lib/redis-client'),
   sesClient: require('./lib/ses-client'),
-  cloudWatchClient: require('./lib/cloudwatch-client')
+  cloudWatchClient: require('./lib/cloudwatch-client'),
+  cloudFrontClient: require('./lib/cloudfront-client')
 }
