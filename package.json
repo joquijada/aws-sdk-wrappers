@@ -21,7 +21,7 @@
     "axios": "^0.24.0",
     "base-64": "^1.0.0",
     "copy-dynamodb-table": "^2.2.1",
-    "ioredis": "^4.27.9",
+    "ioredis": "^5.2.4",
     "lodash.assign": "^4.2.0",
     "lodash.clonedeep": "^4.5.0",
     "ow": "^0.28.0",
