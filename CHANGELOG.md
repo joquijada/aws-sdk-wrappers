@@ -1,3 +1,10 @@
+# [1.14.0](https://github.com/joquijada/aws-sdk-wrappers/compare/v1.13.0...v1.14.0) (2022-11-20)
+
+
+### Features
+
+* **clients:** type all the client offerings ([b3f6e7d](https://github.com/joquijada/aws-sdk-wrappers/commit/b3f6e7d3469b01eb2922962692e9f80afea73841))
+
 # [1.13.0](https://github.com/joquijada/aws-sdk-wrappers/compare/v1.12.0...v1.13.0) (2022-11-04)
 
 
