@@ -1,3 +1,10 @@
+## [1.14.1](https://github.com/joquijada/aws-sdk-wrappers/compare/v1.14.0...v1.14.1) (2022-11-20)
+
+
+### Bug Fixes
+
+* **lambda-client:** fix method return type ([a1e74f5](https://github.com/joquijada/aws-sdk-wrappers/commit/a1e74f5dbdd4a2800517aafc09cda258b6a32283))
+
 # [1.14.0](https://github.com/joquijada/aws-sdk-wrappers/compare/v1.13.0...v1.14.0) (2022-11-20)
 
 
