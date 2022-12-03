@@ -1,7 +1,7 @@
-const cognitoIdentityServiceProvider = require('../../lib/cognito-identity-service-provider')
+const cognitoIdentityServiceProviderClient = require('../../lib/cognito-identity-service-provider-client')
 
-describe('cognito-identity-service-provider', () => {
+describe('cognito-identity-service-provider-client', () => {
   it('instantiates', async () => {
-    expect(cognitoIdentityServiceProvider).toBeDefined()
+    expect(cognitoIdentityServiceProviderClient).toBeDefined()
   })
 })
