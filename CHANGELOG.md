@@ -1,3 +1,10 @@
+## [1.14.2](https://github.com/joquijada/aws-sdk-wrappers/compare/v1.14.1...v1.14.2) (2022-12-03)
+
+
+### Bug Fixes
+
+* **cognito:** keep naming consistent with others ([d319b6c](https://github.com/joquijada/aws-sdk-wrappers/commit/d319b6c886099c746599ed5c4ba8b5277e3cc6a9))
+
 ## [1.14.1](https://github.com/joquijada/aws-sdk-wrappers/compare/v1.14.0...v1.14.1) (2022-11-20)
 
 
