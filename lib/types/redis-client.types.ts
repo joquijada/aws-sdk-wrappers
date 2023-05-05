@@ -1,5 +1,5 @@
-import { RedisCommander } from 'ioredis'
+import { Redis } from 'ioredis'
 
-export type RedisClient = RedisCommander & {
+export type RedisClient = Redis & {
 
 }
