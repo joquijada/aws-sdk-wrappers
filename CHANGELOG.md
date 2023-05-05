@@ -1,3 +1,10 @@
+## [1.14.3](https://github.com/joquijada/aws-sdk-wrappers/compare/v1.14.2...v1.14.3) (2023-05-05)
+
+
+### Bug Fixes
+
+* **redis:** add other missing Redis types ([a6df59d](https://github.com/joquijada/aws-sdk-wrappers/commit/a6df59d7d2a6a31a48e6c24169323d1983bfbc1d))
+
 ## [1.14.2](https://github.com/joquijada/aws-sdk-wrappers/compare/v1.14.1...v1.14.2) (2022-12-03)
 
 
