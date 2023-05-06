@@ -1,3 +1,10 @@
+## [1.14.4](https://github.com/joquijada/aws-sdk-wrappers/compare/v1.14.3...v1.14.4) (2023-05-06)
+
+
+### Bug Fixes
+
+* **redis:** add missing commands like `hscanStream` ([96feae6](https://github.com/joquijada/aws-sdk-wrappers/commit/96feae6b7fa4c0c047768558001b8e867d06240d))
+
 ## [1.14.3](https://github.com/joquijada/aws-sdk-wrappers/compare/v1.14.2...v1.14.3) (2023-05-05)
 
 
