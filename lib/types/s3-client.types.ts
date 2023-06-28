@@ -17,8 +17,17 @@ export type S3Client = S3 & {
     }
   }>
   list: (bucketName, folder) => Promise<ObjectList>
+  listAsStream: (bucketName, folder) => Readable
   metadata: (bucketName: string, filePath: string) => Promise<PromiseResult<S3.Types.HeadObjectOutput, AWSError>>
   put: (params: S3.Types.PutObjectRequest, callback?: (err: Error, data: ManagedUpload.SendData) => void, options?: ManagedUpload.ManagedUploadOptions) => Promise<ManagedUpload.SendData>
+  sync: (params: {
+    fromS3Client: S3Client,
+    fromBucket: string,
+    fromPath: string,
+    toS3Client: S3Client,
+    toBucket: string,
+    toPath: string
+  }) => Promise<void>
   tag: (bucketName: string, filePath: string, tagName: string) => Promise<null | S3.Value>
   tags: (bucketName: string, filePath: string) => Promise<PromiseResult<S3.Types.GetObjectTaggingOutput, AWSError>>
   zipObjects: (bucketName: string, folder: string, objects: string[]) => unknown

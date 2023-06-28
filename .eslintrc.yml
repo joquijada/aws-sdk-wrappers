@@ -13,3 +13,4 @@ overrides:
       - 'jest-test-setup.js'
     rules:
       'no-undef': 'off'
+      'no-var': off
