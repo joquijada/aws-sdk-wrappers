@@ -1,3 +1,10 @@
+# [1.15.0](https://github.com/joquijada/aws-sdk-wrappers/compare/v1.14.4...v1.15.0) (2023-07-08)
+
+
+### Features
+
+* **s3:** add cross account S3 sync capabilities ([839ddfe](https://github.com/joquijada/aws-sdk-wrappers/commit/839ddfef08ffc9c9e2d8091e7558321f3e3a4f5e))
+
 ## [1.14.4](https://github.com/joquijada/aws-sdk-wrappers/compare/v1.14.3...v1.14.4) (2023-05-06)
 
 
