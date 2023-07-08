@@ -463,20 +463,28 @@ describe('S3Client', () => {
 
       expect(mockUpload.mock.calls[0][0]).toEqual({
         Bucket: toBucket,
-        Key: `${fromPath}/happyface.jpg`
+        Key: `${fromPath}/happyface.jpg`,
+        Body: global.PassThrough
       })
+      expect(s3Client.getObject.mock.calls[0][0]).toEqual({ Bucket: fromBucket, Key: `${fromPath}/happyface.jpg` })
       expect(mockUpload.mock.calls[1][0]).toEqual({
         Bucket: toBucket,
-        Key: `${fromPath}/test.jpg`
+        Key: `${fromPath}/test.jpg`,
+        Body: global.PassThrough
       })
+      expect(s3Client.getObject.mock.calls[1][0]).toEqual({ Bucket: fromBucket, Key: `${fromPath}/test.jpg` })
       expect(mockUpload.mock.calls[2][0]).toEqual({
         Bucket: toBucket,
-        Key: `${fromPath}/fileX.pdf`
+        Key: `${fromPath}/fileX.pdf`,
+        Body: global.PassThrough
       })
+      expect(s3Client.getObject.mock.calls[2][0]).toEqual({ Bucket: fromBucket, Key: `${fromPath}/fileX.pdf` })
       expect(mockUpload.mock.calls[3][0]).toEqual({
         Bucket: toBucket,
-        Key: `${fromPath}/fileZ.pdf`
+        Key: `${fromPath}/fileZ.pdf`,
+        Body: global.PassThrough
       })
+      expect(s3Client.getObject.mock.calls[3][0]).toEqual({ Bucket: fromBucket, Key: `${fromPath}/fileZ.pdf` })
     })
 
     it('uses the destination folder specified', async () => {
@@ -496,20 +504,28 @@ describe('S3Client', () => {
 
       expect(mockUpload.mock.calls[0][0]).toEqual({
         Bucket: toBucket,
-        Key: `${toPath}/happyface.jpg`
+        Key: `${toPath}/happyface.jpg`,
+        Body: global.PassThrough
       })
+      expect(s3Client.getObject.mock.calls[0][0]).toEqual({ Bucket: fromBucket, Key: `${fromPath}/happyface.jpg` })
       expect(mockUpload.mock.calls[1][0]).toEqual({
         Bucket: toBucket,
-        Key: `${toPath}/test.jpg`
+        Key: `${toPath}/test.jpg`,
+        Body: global.PassThrough
       })
+      expect(s3Client.getObject.mock.calls[1][0]).toEqual({ Bucket: fromBucket, Key: `${fromPath}/test.jpg` })
       expect(mockUpload.mock.calls[2][0]).toEqual({
         Bucket: toBucket,
-        Key: `${toPath}/fileX.pdf`
+        Key: `${toPath}/fileX.pdf`,
+        Body: global.PassThrough
       })
+      expect(s3Client.getObject.mock.calls[2][0]).toEqual({ Bucket: fromBucket, Key: `${fromPath}/fileX.pdf` })
       expect(mockUpload.mock.calls[3][0]).toEqual({
         Bucket: toBucket,
-        Key: `${toPath}/fileZ.pdf`
+        Key: `${toPath}/fileZ.pdf`,
+        Body: global.PassThrough
       })
+      expect(s3Client.getObject.mock.calls[3][0]).toEqual({ Bucket: fromBucket, Key: `${fromPath}/fileZ.pdf` })
     })
 
     it('reacts to watermark reached by pausing source stream and resuming reading once buffer falls below watermark again', async () => {

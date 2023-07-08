@@ -29,11 +29,11 @@ class mockWritable extends mockRealStream.Writable {
   }
 }
 
+global.PassThrough = {
+  transform: jest.fn()
+}
 jest.mock('stream', () => {
-  mockRealStream.PassThrough = jest.fn(() => ({
-    transform: jest.fn()
-  }))
-
+  mockRealStream.PassThrough = jest.fn(() => global.PassThrough)
   mockRealStream.Readable = mockReadable
   mockRealStream.Writable = mockWritable
   return mockRealStream
