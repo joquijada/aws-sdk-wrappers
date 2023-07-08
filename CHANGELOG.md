@@ -1,3 +1,10 @@
+## [1.15.1](https://github.com/joquijada/aws-sdk-wrappers/compare/v1.15.0...v1.15.1) (2023-07-08)
+
+
+### Bug Fixes
+
+* **s3:** add missing argument to S3 put call during sync ([d2729ff](https://github.com/joquijada/aws-sdk-wrappers/commit/d2729ff34b561e05a2d6c5597eb4a550ced90343))
+
 # [1.15.0](https://github.com/joquijada/aws-sdk-wrappers/compare/v1.14.4...v1.15.0) (2023-07-08)
 
 
