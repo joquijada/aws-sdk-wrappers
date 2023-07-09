@@ -1,3 +1,10 @@
+## [1.15.2](https://github.com/joquijada/aws-sdk-wrappers/compare/v1.15.1...v1.15.2) (2023-07-09)
+
+
+### Bug Fixes
+
+* **s3:** fix liveliness failure during sync ([5cc902e](https://github.com/joquijada/aws-sdk-wrappers/commit/5cc902e5dd05dc51a5847779040cae22de694a7d))
+
 ## [1.15.1](https://github.com/joquijada/aws-sdk-wrappers/compare/v1.15.0...v1.15.1) (2023-07-08)
 
 
