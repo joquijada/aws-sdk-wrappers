@@ -1,3 +1,15 @@
+# [2.0.0](https://github.com/joquijada/aws-sdk-wrappers/compare/v1.15.2...v2.0.0) (2023-07-12)
+
+
+### Features
+
+* **s3:** implement startAfter to support resume S3 bucket sync scenarios ([bfe55b1](https://github.com/joquijada/aws-sdk-wrappers/commit/bfe55b166cc809c976ff007237b8aa6189df7cb4))
+
+
+### BREAKING CHANGES
+
+* **s3:** the interface of listAsStream changed from param list of destructured object
+
 ## [1.15.2](https://github.com/joquijada/aws-sdk-wrappers/compare/v1.15.1...v1.15.2) (2023-07-09)
 
 
