@@ -1,3 +1,10 @@
+## [2.0.2](https://github.com/joquijada/aws-sdk-wrappers/compare/v2.0.1...v2.0.2) (2023-07-12)
+
+
+### Bug Fixes
+
+* **s3:** make sure continuation token value is a string, not a boolean ([f8c43be](https://github.com/joquijada/aws-sdk-wrappers/commit/f8c43be6328918d750e5b772267d31d4ff01a8e9))
+
 ## [2.0.1](https://github.com/joquijada/aws-sdk-wrappers/compare/v2.0.0...v2.0.1) (2023-07-12)
 
 
