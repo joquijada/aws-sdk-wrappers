@@ -1,3 +1,10 @@
+## [2.0.3](https://github.com/joquijada/aws-sdk-wrappers/compare/v2.0.2...v2.0.3) (2023-07-12)
+
+
+### Bug Fixes
+
+* **s3:** fix broken listAsStream ([f256871](https://github.com/joquijada/aws-sdk-wrappers/commit/f2568716f9cb0154fa1fdae1481ff59f48c4b680))
+
 ## [2.0.2](https://github.com/joquijada/aws-sdk-wrappers/compare/v2.0.1...v2.0.2) (2023-07-12)
 
 
