@@ -1,3 +1,10 @@
+## [2.0.1](https://github.com/joquijada/aws-sdk-wrappers/compare/v2.0.0...v2.0.1) (2023-07-12)
+
+
+### Bug Fixes
+
+* **s3:** get rid of infinitely circling over S3 objects when sync'ing/listing ([37cfe20](https://github.com/joquijada/aws-sdk-wrappers/commit/37cfe20fe0e59b11dd062b00f884f067618f6af9))
+
 # [2.0.0](https://github.com/joquijada/aws-sdk-wrappers/compare/v1.15.2...v2.0.0) (2023-07-12)
 
 
