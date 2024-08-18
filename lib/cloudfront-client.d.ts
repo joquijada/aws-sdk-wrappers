@@ -1,3 +1,3 @@
+import { CloudFront } from 'aws-sdk/clients/all'
 export = cloudFront;
-declare const cloudFront: CloudFront;
-import { CloudFront } from "aws-sdk/clients/all";
+declare const cloudFront: CloudFront

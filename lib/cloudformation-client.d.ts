@@ -1,3 +1,3 @@
+import { CloudFormation } from 'aws-sdk/clients/all'
 export = cloudFormation;
-declare const cloudFormation: CloudFormation;
-import { CloudFormation } from "aws-sdk/clients/all";
+declare const cloudFormation: CloudFormation

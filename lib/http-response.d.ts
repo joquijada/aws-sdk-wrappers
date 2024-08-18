@@ -5,14 +5,14 @@ export = HttpResponse;
  *
  */
 declare class HttpResponse {
-    /**
+  /**
      * @param {number} statusCode
      * @param {any} message
      */
-    constructor(statusCode: number, message: any, additionalInfo?: {});
-    statusCode: number;
-    message: any;
-    /**
+  constructor(statusCode: number, message: any, additionalInfo?: {});
+  statusCode: number
+  message: any
+  /**
      * Serializes to the format <a href="https://aws.amazon.com/premiumsupport/knowledge-center/malformed-502-api-gateway/">that AWS API Gateway proxies want Lambda proxy integrations to return, namely:</a>
      *
      * <pre>
@@ -34,7 +34,7 @@ declare class HttpResponse {
      * that already relied on the usual constructor(), else the constructor would accept arguments similar to the
      * props found in APIG/Lambda event response object.
      */
-    toAwsApiGatewayFormat(): {
+  toAwsApiGatewayFormat(): {
         body: any;
     };
 }

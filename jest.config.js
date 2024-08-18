@@ -12,9 +12,7 @@ const jest = {
   },
   // setupFilesAfterEnv: ["jest-extended"],
   verbose: true,
-  setupFilesAfterEnv: [
-    './tests/jest-test-setup.js'
-  ]
+  setupFilesAfterEnv: [ './tests/jest-test-setup.js' ]
 }
 
 module.exports = jest
