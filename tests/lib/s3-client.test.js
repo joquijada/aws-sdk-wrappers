@@ -85,20 +85,17 @@ const mockListObjectsV2 = jest.fn(() => ({
  * outside of the modules.export... statement).
  * Note: Jest jest.mock() hoisting feature is our friend here, see https://github.com/kentcdodds/how-jest-mocking-works
  */
-// Must be a 'var' for hoisting to do its thing. else get 'ReferenceError: Cannot access 'mockS3' before initialization' error
-var mockS3 = jest.fn(() => ({
-  copyObject: mockCopyObject,
-  upload: mockUpload,
-  getObject: mockGetObject,
-  headObject: mockHeadObject,
-  getObjectTagging: mockGetObjectTagging,
-  listObjectsV2: mockListObjectsV2
-}))
 
-var mockEndpoint = jest.fn()
 jest.mock('aws-sdk', () => ({
-  S3: mockS3,
-  Endpoint: mockEndpoint
+  S3: jest.fn(() => ({
+    copyObject: mockCopyObject,
+    upload: mockUpload,
+    getObject: mockGetObject,
+    headObject: mockHeadObject,
+    getObjectTagging: mockGetObjectTagging,
+    listObjectsV2: mockListObjectsV2
+  })),
+  Endpoint: jest.fn()
 }))
 
 const s3Client = require('../../lib/s3-client') // Our test subject (SUT)
@@ -132,7 +129,7 @@ describe('S3Client', () => {
   })
 
   it('copies from one bucket to another', () => {
-    const [fromBucket, fromPath, toBucket, toPath] = ['fromBucket', 'fromPath', 'toBucket', 'toPath']
+    const [ fromBucket, fromPath, toBucket, toPath ] = [ 'fromBucket', 'fromPath', 'toBucket', 'toPath' ]
     const expectedCopyObjectArg = {
       Bucket: toBucket,
       CopySource: `/${fromBucket}/${fromPath}`,
@@ -208,7 +205,7 @@ describe('S3Client', () => {
     // Change the file names around a bit
     payload2.Contents[0].Key = 'fileX.pdf'
     payload2.Contents[1].Key = 'fileZ.pdf'
-    prepareS3ListObjectsV2Mock([payload1, payload2])
+    prepareS3ListObjectsV2Mock([ payload1, payload2 ])
 
     const zipPipelinePromiseSuccess = 'THIS IS A TEST: Zip pipeline was successful'
     pipeline.mockResolvedValueOnce(zipPipelinePromiseSuccess)
@@ -216,15 +213,17 @@ describe('S3Client', () => {
       foo: 'bar'
     }
     s3Zip.archive.mockReturnValueOnce(s3ZipArchiveReturnValue)
-    const args = ['from-bucket', 'from-folder', ['obj1', 'obj2', 'obj3', 'obj4/']]
+    const args = [ 'from-bucket', 'from-folder', [ 'obj1', 'obj2', 'obj3', 'obj4/' ] ]
     await s3Client.zipObjectsToBucket(...args)
     expect(s3Zip.archive).toHaveBeenLastCalledWith({
       s3: s3Client,
       bucket: args[0],
       preserveFolderStructure: true
-    }, args[1], [args[2][0], args[2][1], args[2][2],
+    }, args[1], [
+      args[2][0], args[2][1], args[2][2],
       `obj4/${MOCK_S3_LIST_OBJECTS_V2_METADATA.Contents[0].Key}`, `obj4/${MOCK_S3_LIST_OBJECTS_V2_METADATA.Contents[1].Key}`,
-      'obj4/fileX.pdf', 'obj4/fileZ.pdf'])
+      'obj4/fileX.pdf', 'obj4/fileZ.pdf'
+    ])
     expect(pipeline.mock.calls[0][0]).toEqual(s3ZipArchiveReturnValue)
     expect(JSON.stringify(pipeline.mock.calls[0][1])).toEqual(JSON.stringify(passThrough))
     expect(mockListObjectsV2).toHaveBeenNthCalledWith(1, {
@@ -248,7 +247,7 @@ describe('S3Client', () => {
     // Change the file names around a bit
     payload2.Contents[0].Key = 'fileX.pdf'
     payload2.Contents[1].Key = 'fileZ.pdf'
-    prepareS3ListObjectsV2Mock([payload1, payload2])
+    prepareS3ListObjectsV2Mock([ payload1, payload2 ])
 
     const zipPipelinePromiseSuccess = 'THIS IS A TEST: Zip pipeline was successful'
     pipeline.mockResolvedValueOnce(zipPipelinePromiseSuccess)
@@ -257,15 +256,17 @@ describe('S3Client', () => {
     }
     s3Zip.archive.mockReturnValueOnce(s3ZipArchiveReturnValue)
     // The 'from folder' is blank because the objects to Zip are at the top level
-    const args = ['from-bucket', '', ['obj1', 'obj2', 'obj3', 'obj4/']]
+    const args = [ 'from-bucket', '', [ 'obj1', 'obj2', 'obj3', 'obj4/' ] ]
     await s3Client.zipObjectsToBucket(...args)
     expect(s3Zip.archive).toHaveBeenLastCalledWith({
       s3: s3Client,
       bucket: args[0],
       preserveFolderStructure: true
-    }, args[1], [args[2][0], args[2][1], args[2][2],
+    }, args[1], [
+      args[2][0], args[2][1], args[2][2],
       `obj4/${MOCK_S3_LIST_OBJECTS_V2_METADATA.Contents[0].Key}`, `obj4/${MOCK_S3_LIST_OBJECTS_V2_METADATA.Contents[1].Key}`,
-      'obj4/fileX.pdf', 'obj4/fileZ.pdf'])
+      'obj4/fileX.pdf', 'obj4/fileZ.pdf'
+    ])
     expect(pipeline.mock.calls[0][0]).toEqual(s3ZipArchiveReturnValue)
     expect(JSON.stringify(pipeline.mock.calls[0][1])).toEqual(JSON.stringify(passThrough))
     expect(mockListObjectsV2).toHaveBeenNthCalledWith(1, {
@@ -287,7 +288,7 @@ describe('S3Client', () => {
         foo: 'bar'
       }
       s3Zip.archive.mockReturnValueOnce(s3ZipArchiveReturnValue)
-      const args = ['from-bucket', 'from-folder', ['obj1', 'obj2', 'obj3']]
+      const args = [ 'from-bucket', 'from-folder', [ 'obj1', 'obj2', 'obj3' ] ]
       await s3Client.zipObjectsToBucket(...args)
       throw new Error('Should have thrown an error')
     } catch (e) {
@@ -306,7 +307,7 @@ describe('S3Client', () => {
         foo: 'bar'
       }
       s3Zip.archive.mockReturnValueOnce(s3ZipArchiveReturnValue)
-      const args = ['from-bucket', 'from-folder', ['obj1', 'obj2', 'obj3']]
+      const args = [ 'from-bucket', 'from-folder', [ 'obj1', 'obj2', 'obj3' ] ]
       await s3Client.zipObjectsToBucket(...args)
       throw new Error('Should have thrown an error')
     } catch (e) {
@@ -321,7 +322,7 @@ describe('S3Client', () => {
         promise: () => Promise.reject(s3ListError)
       }))
       process.env.SHO_AWS_STAGE = 'local'
-      const args = ['from-bucket', 'from-folder', ['obj1', 'obj2', 'obj3', 'obj4/']]
+      const args = [ 'from-bucket', 'from-folder', [ 'obj1', 'obj2', 'obj3', 'obj4/' ] ]
       await s3Client.zipObjectsToBucket(...args)
       throw new Error('Should have thrown an error')
     } catch (e) {
@@ -434,7 +435,7 @@ describe('S3Client', () => {
       const payload1 = cloneDeep(MOCK_S3_LIST_OBJECTS_V2_METADATA)
       const payload2 = cloneDeep(MOCK_S3_LIST_OBJECTS_V2_METADATA)
 
-      prepareS3ListObjectsV2Mock([payload1, payload2])
+      prepareS3ListObjectsV2Mock([ payload1, payload2 ])
 
       const s3Objects = await s3Client.list('TEST_BUCKET', 'test/file/path')
       expect(s3Objects).toBeDefined()
@@ -448,13 +449,13 @@ describe('S3Client', () => {
     })
 
     it('uses same destination folder as source when destination folder not specified', async () => {
-      const [fromBucket, fromPath, toBucket] = ['fromBucket', 'fromPath', 'toBucket']
+      const [ fromBucket, fromPath, toBucket ] = [ 'fromBucket', 'fromPath', 'toBucket' ]
       const payload1 = cloneDeep(MOCK_S3_LIST_OBJECTS_V2_METADATA)
       const payload2 = cloneDeep(MOCK_S3_LIST_OBJECTS_V2_METADATA)
       // Change the file names around a bit
       payload2.Contents[0].Key = 'fileX.pdf'
       payload2.Contents[1].Key = 'fileZ.pdf'
-      prepareS3ListObjectsV2Mock([payload1, payload2])
+      prepareS3ListObjectsV2Mock([ payload1, payload2 ])
       await s3Client.sync({
         fromBucket,
         fromPath,
@@ -488,13 +489,13 @@ describe('S3Client', () => {
     })
 
     it('uses the destination folder specified', async () => {
-      const [fromBucket, fromPath, toBucket, toPath] = ['fromBucket', 'fromPath', 'toBucket', 'toPath']
+      const [ fromBucket, fromPath, toBucket, toPath ] = [ 'fromBucket', 'fromPath', 'toBucket', 'toPath' ]
       const payload1 = cloneDeep(MOCK_S3_LIST_OBJECTS_V2_METADATA)
       const payload2 = cloneDeep(MOCK_S3_LIST_OBJECTS_V2_METADATA)
       // Change the file names around a bit
       payload2.Contents[0].Key = 'fileX.pdf'
       payload2.Contents[1].Key = 'fileZ.pdf'
-      prepareS3ListObjectsV2Mock([payload1, payload2])
+      prepareS3ListObjectsV2Mock([ payload1, payload2 ])
       await s3Client.sync({
         fromBucket,
         fromPath,
@@ -537,13 +538,13 @@ describe('S3Client', () => {
         console.log(`JMQ: ITEM IS ${JSON.stringify(item)}`)
         return false
       })
-      const [fromBucket, fromPath, toBucket] = ['fromBucket', 'fromPath', 'toBucket']
+      const [ fromBucket, fromPath, toBucket ] = [ 'fromBucket', 'fromPath', 'toBucket' ]
       const payload1 = cloneDeep(MOCK_S3_LIST_OBJECTS_V2_METADATA)
       const payload2 = cloneDeep(MOCK_S3_LIST_OBJECTS_V2_METADATA)
       // Change the file names around a bit
       payload2.Contents[0].Key = 'fileX.pdf'
       payload2.Contents[1].Key = 'fileZ.pdf'
-      prepareS3ListObjectsV2Mock([payload1, payload2])
+      prepareS3ListObjectsV2Mock([ payload1, payload2 ])
       await s3Client.sync({
         fromBucket,
         fromPath,
@@ -561,13 +562,13 @@ describe('S3Client', () => {
         promise: () => Promise.reject(new Error('THIS IS A TEST: problem writing to S3 during sync'))
       }))
 
-      const [fromBucket, fromPath, toBucket] = ['fromBucket', 'fromPath', 'toBucket']
+      const [ fromBucket, fromPath, toBucket ] = [ 'fromBucket', 'fromPath', 'toBucket' ]
       const payload1 = cloneDeep(MOCK_S3_LIST_OBJECTS_V2_METADATA)
       const payload2 = cloneDeep(MOCK_S3_LIST_OBJECTS_V2_METADATA)
       // Change the file names around a bit
       payload2.Contents[0].Key = 'fileX.pdf'
       payload2.Contents[1].Key = 'fileZ.pdf'
-      prepareS3ListObjectsV2Mock([payload1, payload2])
+      prepareS3ListObjectsV2Mock([ payload1, payload2 ])
       await s3Client.sync({
         fromBucket,
         fromPath,

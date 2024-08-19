@@ -1,2 +1,2 @@
-export = functions;
-declare const functions: {};
+export = client;
+declare let client: {}

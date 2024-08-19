@@ -1,6 +1,5 @@
 {
   "include": [
-    "index.js",
     "lib/*.js"
   ],
   "compilerOptions": {

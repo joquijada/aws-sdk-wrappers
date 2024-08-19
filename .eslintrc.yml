@@ -1,16 +1,14 @@
-env:
-  commonjs: true
 extends:
-  - standard
-parserOptions:
-  ecmaVersion: 12
-rules:
-  space-before-function-paren: off
-  generator-star-spacing: off
+  - '@exsoinn/eslint-config-exsoinn'
 overrides:
   - files:
-      - '*.test.js'
-      - 'jest-test-setup.js'
+    - "jest-test-setup.js"
+    env:
+      jest: true
+  - files:
+      - "*.ts"
     rules:
-      'no-undef': 'off'
-      'no-var': off
+      '@typescript-eslint/no-explicit-any': 'off'
+      'no-use-before-define': off
+      '@typescript-eslint/no-require-imports': off
+      '@typescript-eslint/no-empty-object-type': off

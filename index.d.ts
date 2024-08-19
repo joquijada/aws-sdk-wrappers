@@ -4,10 +4,11 @@ import * as AWS from 'aws-sdk'
 import { S3Client } from './lib/types/s3-client.types'
 import { LambdaClient } from './lib/types/lambda-client.types'
 import { RedisClient } from './lib/types/redis-client.types'
+import { CloudFormationClient } from './lib/types/cloudformation-client.types'
 
 export const axiosClient: {
-  get: (url: any, callback: any, options?: {}) => any;
-  getAsStream: (url: any, callback: any, options?: {}) => any;
+  get: (url: any, callback: any, options?: object) => any;
+  getAsStream: (url: any, callback: any, options?: object) => any;
   passThroughLambdaEvent: (url: any, event: any) => Promise<{
     body: any;
     headers: any;
@@ -27,7 +28,7 @@ export const dynamoDbClient: {
 }
 export const s3Client: S3Client
 export const sqsClient: {
-  send: (url: any, message: any, params?: {}) => Promise<import('aws-sdk/lib/request').PromiseResult<SQS.SendMessageResult, AWSError>>;
+  send: (url: any, message: any, params?: object) => Promise<import('aws-sdk/lib/request').PromiseResult<SQS.SendMessageResult, AWSError>>;
 }
 export const utils: {
   isString: (argument: any) => boolean;
@@ -40,4 +41,4 @@ export const redisClient: RedisClient
 export const sesClient: AWS.SES
 export const cloudWatchClient: AWS.CloudWatch
 export const cloudFrontClient: AWS.CloudFront
-export const cloudFormationClient: AWS.CloudFormation
+export const cloudFormationClient: CloudFormationClient

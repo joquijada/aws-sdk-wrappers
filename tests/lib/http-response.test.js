@@ -17,11 +17,11 @@ describe('http-response', () => {
   })
 
   it('includes "headers" and "cookies" if present and set', () => {
-    const res = new HttpResponse(200, '', { name: 'value', headers: { hdr1: 'hdr val' }, cookies: ['cookie 1'] })
+    const res = new HttpResponse(200, '', { name: 'value', headers: { hdr1: 'hdr val' }, cookies: [ 'cookie 1' ] })
     expect(res.toAwsApiGatewayFormat()).toEqual({
       statusCode: 200,
       headers: { hdr1: 'hdr val' },
-      cookies: ['cookie 1'],
+      cookies: [ 'cookie 1' ],
       body: JSON.stringify({ name: 'value' }, null, ' ')
     })
   })
@@ -33,12 +33,12 @@ describe('http-response', () => {
       body: {
         foo: 'bar'
       },
-      cookies: ['cookie 1']
+      cookies: [ 'cookie 1' ]
     })
     expect(res.toAwsApiGatewayFormat()).toEqual({
       statusCode: 200,
       headers: { hdr1: 'hdr val' },
-      cookies: ['cookie 1'],
+      cookies: [ 'cookie 1' ],
       body: JSON.stringify({
         foo: 'bar'
       }, null, ' ')
