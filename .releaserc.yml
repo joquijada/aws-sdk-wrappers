@@ -1,1 +1,2 @@
+branches: [ main ]
 extends: '@exsoinn/node-js-ci-cd'
