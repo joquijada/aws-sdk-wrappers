@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.1](https://github.com/joquijada/aws-sdk-wrappers/compare/v2.1.0...v2.1.1) (2024-08-19)
+
+
+### Bug Fixes
+
+* **release:** add missing SR branch name ([02b072d](https://github.com/joquijada/aws-sdk-wrappers/commit/02b072d59f03b809764207b72a04e2e51cd1d65a))
+
 # [2.1.0](https://github.com/joquijada/aws-sdk-wrappers/compare/v2.0.3...v2.1.0) (2024-08-19)
 
 
