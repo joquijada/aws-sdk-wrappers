@@ -1,3 +1,12 @@
+# Changelog
+
+# [2.1.0](https://github.com/joquijada/aws-sdk-wrappers/compare/v2.0.3...v2.1.0) (2024-08-19)
+
+
+### Features
+
+* **cloudformation:** add explicity CF exported type ([0e0256a](https://github.com/joquijada/aws-sdk-wrappers/commit/0e0256a3fafcfb943ecf18bb7a7f9438c8ed314b))
+
 ## [2.0.3](https://github.com/joquijada/aws-sdk-wrappers/compare/v2.0.2...v2.0.3) (2023-07-12)
 
 
